@@ -1,0 +1,41 @@
+h1 {
+  /* Окрасили буквы */
+  color: DarkKhaki;
+  /* Выравнивание по центру */
+  text-align: center;
+  /* Размер шрифта */
+  font-size: 40px;
+  /* Стиль шрифта */
+  font-family: monospace;
+  /* Жирность шрифта */
+  font-weight: 900;
+  /* Сделаем его подчеркнутым */
+  text-decoration: underline;
+}
+
+h2,
+code {
+  /* Окрасили буквы */
+  color: DarkOliveGreen;
+  /* Задний фон */
+  background-color: LightCyan;
+}
+
+li > code {
+  border: 1px solid DarkOliveGreen;
+  border-radius: 2px;
+  background-color: Moccasin;
+}
+
+.special {
+  /* Тень */
+  text-shadow: 2px 2px 4px DarkOliveGreen;
+  box-shadow: 0 0 5px DarkOliveGreen;
+}
+
+code.special {
+  /* Другой цвет текста */
+  color: rgb(24, 35, 4);
+  background-color: LightGoldenRodYellow;
+  font-family: "Times New Roman", Times, serif;
+}

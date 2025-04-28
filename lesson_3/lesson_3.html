@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Урок 3. Тема: знакомство с CSS">
+    <meta name="keywords" content="CSS, способы подключения стилей, inline style">
+    <title>Lesson 3</title>
+    <!-- <style>
+        /* Это стили оформления которые будут действовать на весь документ.  Внутренний стиль (internal style) */
+
+        h1 {
+            /* Окрасили буквы */
+            color: DarkKhaki;
+            /* Выравнивание по центру */
+            text-align: center;
+        }
+
+        h2, code {
+            /* Окрасили буквы */
+            color: DarkOliveGreen;
+            /* Задний фон */
+            background-color: LightCyan;
+        }
+    </style> -->
+    <!-- Подключаем внешний файл стилей styles.css -->
+     <!-- link:css - Эммет для ссылки на стили -->
+      
+    <link rel="stylesheet" href="lesson_3.css">
+</head>
+<body>
+    <h1>Знакомство с CSS</h1>
+    <h2>Определение CSS</h2>
+    <p>
+        CSS (Cascading Style Sheets) - это язык описания внешнего вида документа, написанного на HTML. Он позволяет отделить содержание документа от его оформления, что делает код более чистым и удобным для поддержки.
+        
+        При условии что стили лежат в отдельном файле.
+    </p>
+    <h2>Подключение CSS. 3 способа. &#129488;</h2>
+    <p>
+        Существует 3 способа подключения CSS к HTML-документу:
+    </p>
+    <!-- ol>li*3 -->
+    <ul>
+        <li style="color: SeaGreen;">
+            Инлайн стиль (inline style) - стили прописываются непосредственно в HTML-тегах с помощью атрибута style. Например:
+            <code>&lt;h1 style="color: red;"&gt;Заголовок&lt;/h1&gt;</code>
+        </li>
+        <li>
+            Внутренний стиль (internal style) - стили прописываются документа в теге <code>head</code> с помощью тега 
+            <code>style</code>.
+        </li>
+        <li>
+            Внешний стиль (external style) - стили прописываются в отдельном файле с расширением <code>.css</code>, который подключается к HTML-документу с помощью тега <code>link</code> в разделе <code>head</code>. Например:
+            <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>
+        </li>
+    </ul>
+    <!-- h2{Типы селекторов}+ul>li*4 -->
+    <h2 class="special">Типы селекторов</h2>
+    <p>Сегодня мы будем смотреть на селекторы по тегу вроде <code>h1</code> и по классу вроде <code class="special">.class</code></p>
+    <ul>
+        <li>
+            <code>h1</code> - селектор по тегу. Воздействует на все указанные теги.
+        </li>
+        <li>
+            <code>h2, code</code> - селектор по тегам, воздействует на указанные теги.
+        </li>
+        <li>
+            <code>li>code</code> - селектор по тегу и вложенному тегу. Воздействует на указанные теги, которые находятся внутри указанных тегов.
+        </li>
+        <li>
+            <code>.special</code> - селектор по классу. Воздействует на все элементы с указанным классом.
+        </li>
+        <li>
+            <code>code.special</code> - селектор по тегу и классу. Воздействует на указанные теги с указанным классом.
+        </li>
+    </ul>
+    
+</body>
+</html>
+
+<!-- - `color` для изменения цвета текста,
+- `background-color` для изменения фона,
+- `font-family` для задания шрифта,
+- `text-align` для выравнивания текста,
+- `font-size`  -->
