@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Из презентации 5го урока. Работа со шрифтами">
+    <title>Шрифты</title>
+    <!-- Гугл шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kelly+Slab&display=swap" rel="stylesheet">
+    <style>
+    .span-serif {
+        font-family: serif;
+    }
+    .span-sans-serif {
+        font-family: sans-serif;
+    }
+    .span-monospace {
+        font-family: monospace;
+    }
+    .span-cursive {
+        font-family: cursive;
+    }
+    .span-fantasy {
+        font-family: fantasy;
+    }
+    code {
+        background-color: #f0f0f0;
+        border-radius: 3px;
+    }
+    img {
+        min-width: 300px;
+        max-width: 100%;
+
+    }
+    html {
+        font-size: 10px;
+        
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        /* Гугл шрифты */
+    }
+    h2 {
+        font-size: 2rem;
+        
+    }
+    p {
+        font-size: 1rem;
+    }
+    h1, h2, code {
+        font-family: 'Inter', sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <h1>Шрифты</h1>
+    <p>Это страничка, которая демонстрирует работу со шрифтами.</p>
+    <h2>Типы шрифтов:</h2>
+    <ol>
+        <li><code>Serif</code> - <span class="span-serif">шрифты с засечками.</span></li>
+        <li><code>Sans-serif</code> -<span class="span-sans-serif">шрифты без засечек.</span></li>
+        <li><code>Monospace</code> - <span class="span-monospace">моноширинные шрифты.</span></li>
+        <li><code>Cursive</code> - <span class="span-cursive">курсив.</li>
+        <li><code>Fantasy</code> - <span class="span-fantasy">декоративные шрифты.</span></li>
+    </ol>
+    <h2>Еденицы измерения</h2>
+    <p>В CSS есть несколько единиц измерения, которые можно использовать для задания размеров шрифтов:</p>
+    <ul>
+        <li><code>px</code> - пиксели</li>
+        <li><code>em</code> - относительная единица измерения, которая зависит от размера шрифта родительского элемента</li>
+        <li><code>rem</code> - относительная единица измерения, которая зависит от размера шрифта корневого элемента (обычно это <code>&lt;html&gt;</code>)</li>
+        <li><code>%</code> - процент от размера родительского элемента</li>
+        <li><code>vw</code> - 1% от ширины экрана</li>
+        <li><code>vh</code> - 1% от высоты экрана</li>
+        <img src="photograph.jpg" alt="Фотография Шарика за работой">
+</body>
+</html>
+
+
+<!-- Serif: шрифты с засечками.
+Sans-serif: шрифты без засечек.
+Monospace: моноширинные шрифты.
+Cursive: курсив.
+Fantasy: декоративные шрифты -->
