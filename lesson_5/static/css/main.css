@@ -1,0 +1,55 @@
+body {
+  background-color: rgb(237, 242, 235);
+}
+
+/* Подключаем кастомный шрифт из папки fonts */
+@font-face {
+  font-family: "TDA Text Condensed"; /* Имя шрифта, как ты его будешь использовать */
+  src: url("../fonts/TDATextCondensed.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2 {
+  font-family: "Lobster";
+}
+
+body {
+  font-family: "Podkova", serif;
+}
+
+/* 
+Мы подключили гугл шрифты:
+- Lobster
+- Pixelify Sans
+- Podkova
+
+Теперь мы можем их использовть в CSS
+*/
+
+/* Допустим мы делаем технический блог, и хотим сделать стилизацию
+для всех вставок хоткеев шрифтом Pixelify Sans
+
+code.hotkeys
+*/
+
+code.hotkeys {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1.2em;
+  background-color: #8ca2eb;
+  padding: 5px;
+  border-radius: 5px;
+  border: black solid 1px;
+  font-weight: 400;
+}
+
+code.commands {
+  font-family: monospace;
+  font-size: 1.2em;
+  background-color: #cebcbc;
+  padding: 5px;
+  border-radius: 5px;
+  border: black solid 1px;
+  font-weight: 600;
+}
