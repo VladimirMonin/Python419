@@ -53,3 +53,18 @@ code.commands {
   border: black solid 1px;
   font-weight: 600;
 }
+
+img {
+  height: 300px;
+  /* width: 300px; */
+  /* width: auto; */
+  /* Фильтр сепии */
+  filter: sepia(0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  /* border: #8ca2eb solid 4px; */
+}
+
+/* div.image {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */

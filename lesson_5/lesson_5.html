@@ -22,13 +22,41 @@
     <h1>Работа со шрифтами и изображениями</h1>
     <h2>Горячие клавиши VS Code</h2>
     <p>
-        Настройки VS Code можно открыть с помощью сочетания клавиш:  <code class="hotkeys">CTRL + ,</code>
+      Настройки VS Code можно открыть с помощью сочетания клавиш:
+      <code class="hotkeys">CTRL + ,</code>
     </p>
     <p>
-        Команда для создания окружения Python: <code class="commands">
-        python -m venv env
-        </code>
+      Команда для создания окружения Python:
+      <code class="commands"> python -m venv env </code>
     </p>
-   
+    <h2>Разница между блочным и строчным тегом</h2>
+    <div>Это DIV! - Блочный!</div>
+    <div>Это DIV! - Блочный!</div>
+    <div>
+      Это DIV! - Блочный!
+      <div>Это DIV! - Блочный!</div>
+    </div>
+    <span>Это SPAN! Строчный!</span>
+    <span>Это SPAN! Строчный!</span>
+    <span>Это SPAN! Строчный!</span>
+    <span>Это SPAN! Строчный!</span>
+    <h2>Вставка изображения!</h2>
+    <p>
+      Изображение - это строчный тег. Подключить изображение можно как по ссылке
+      из Интернета так и поссылке на локальный файл.
+    </p>
+    <p>Изображение из интернета:</p>
+
+    <div class="image">
+      <img
+        src="https://i.pinimg.com/736x/39/f0/f2/39f0f2ca9715c3112484605f504bec76.jpg"
+        alt="Фотография братьев Люмьер"
+      />
+    </div>
+
+    <div class="image">
+      <img src="./static/images/einstein.webp" alt="Фотография Эйнштейна" />
+    </div>
+    <img src="./static/images/einstein.webp" alt="Фотография Эйнштейна" />
   </body>
 </html>
