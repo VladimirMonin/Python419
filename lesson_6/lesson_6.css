@@ -1,7 +1,7 @@
 /* Базовые стили для всей страницы */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f7;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f1de;
   margin: 0;
   padding: 20px;
   color: #333;
@@ -9,18 +9,18 @@ body {
 
 h1 {
   text-align: center;
-  color: #4a2c82;
+  color: #3d405b; /* Глубокий индиго для заголовка */
   margin-bottom: 30px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Наш волшебный флекс-контейнер для галереи */
 div.gallery {
-  background-color: rgb(219, 240, 255);
+  background-color: #f2f0e6;
   min-height: 600px;
-  border: 10px double rgb(216, 193, 255);
+  border: 10px double #81b29a;
   padding: 20px;
-  
+
   /* Вот она, магия флексбоксов! */
   display: flex;
   flex-wrap: wrap; /* Разрешаем карточкам переноситься на новую строку */
@@ -33,13 +33,13 @@ div.card {
   /* Убираем inline-block, он нам больше не нужен */
   width: 350px;
   /* Фиксированная высота для всех карточек */
-  height: 550px; 
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
-  background-color: rgb(163, 138, 208);
-  border: 5px solid rgba(88, 98, 234, 0.62);
+  height: 550px;
+  background-color: #fcfcfc; /* Почти белый */
+  border: 5px solid #3d405b; /* Индиго граница */
+  box-shadow: 10px 10px 5px rgba(61, 64, 91, 0.3);
   border-radius: 5px;
   padding: 10px;
-  
+
   /* Карточка тоже становится флекс-контейнером */
   display: flex;
   flex-direction: column; /* Содержимое располагается вертикально */
@@ -108,7 +108,7 @@ div.card:hover {
     flex-direction: column;
     align-items: center;
   }
-  
+
   div.card {
     width: 90%;
     max-width: 350px;
