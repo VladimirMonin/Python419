@@ -45,6 +45,15 @@ div.card {
   flex-direction: column; /* Содержимое располагается вертикально */
 }
 
+/* Эффект при наведении на карточку - небольшая анимация */
+div.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.4);
+  /* Указатель пальцем */
+  cursor: pointer;
+}
+
 /* Контейнер для изображения и подписи */
 figure {
   margin: 0;
@@ -95,13 +104,6 @@ figcaption h3 {
   padding-bottom: 5px;
 }
 
-/* Эффект при наведении на карточку - небольшая анимация */
-div.card:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.4);
-}
-
 /* Адаптивность для маленьких экранов */
 @media (max-width: 768px) {
   div.gallery {
@@ -113,4 +115,27 @@ div.card:hover {
     width: 90%;
     max-width: 350px;
   }
+}
+
+/* Выключим кругляши у ul списка */
+ul {
+  list-style-type: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем отступы */
+  margin: 0; /* Убираем внешние отступы */
+}
+
+/* Покрасим i в теге h2 */
+h2 > i {
+  color: #db6444; /* Цвет для иконки */
+}
+
+li > i {
+  color: #81b29a; /* Цвет для иконок в списке */
+  font-size: 0.8em; /* Немного увеличим размер иконок */
+}
+
+h3 > i {
+  color: #381f66;
+  font-size: 1.4em; /* Увеличим размер иконок в заголовках */
+  margin-right: 10px; /* Отступ справа от иконки */
 }
