@@ -1,0 +1,64 @@
+      /* Дополнительные стили, специфичные только для страницы о Бэббидже */
+      .detail-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #f2f0e6;
+        padding: 20px;
+        border: 10px double #81b29a;
+        border-radius: 5px;
+      }
+
+      .detail-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .detail-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-right: 20px;
+      }
+
+      .detail-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .back-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #3d405b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .back-button:hover {
+        background-color: #4a2c82;
+        transform: translateY(-3px);
+      }
+
+      .detail-section {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #fcfcfc;
+        border-radius: 5px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      blockquote {
+        font-style: italic;
+        border-left: 4px solid #81b29a;
+        padding-left: 15px;
+        margin-left: 0;
+        color: #4a4a4a;
+      }
