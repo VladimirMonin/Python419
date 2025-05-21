@@ -42,11 +42,19 @@ li::before {
   content: "✅";
 }
 
+/* Эффект всплытия по наведению TR находящиеся в tbody c анимацией и тенью */
+tbody tr:hover {
+  background-color: #f2f2f2;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
 /* odd - четный, even - нечетный */
 /* Можно поставить цифру, например 2n для четных или 2n+1 для нечетных */
 
 tr:nth-child(even) {
-  background-color: #fff4f4;
+  background-color: #ffeeee;
 }
 
 tr:nth-child(odd) {
@@ -57,3 +65,14 @@ tr:nth-child(odd) {
 section:nth-child(even) {
   background-color: #fbfff6;
 }
+
+/* Сделаем покраску по столбикам для .test-table ТОГДА УДАЛИТЕ ТРИ СТИЛЯ ВЫШЕ*/
+.test-table  td:nth-child(3n+2) {
+  background-color: #f2efff;
+}
+
+/* Похожая история для списков */
+
+/* ul li:nth-child(odd) {
+  background-color: #9684e5;
+} */
