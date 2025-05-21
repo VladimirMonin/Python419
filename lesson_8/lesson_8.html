@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Урок 8. Работа с Таблицами в HTML" />
+    <link rel="stylesheet" href="lesson_8.css" />
+    <title>Урок 8</title>
+  </head>
+  <body>
+    <!-- header>nav^main>section*3^footer{подвал} -->
+    <header>
+      <nav></nav>
+    </header>
+    <main>
+      <section>
+        <h1>Знакомство с таблицами</h1>
+
+        <p>
+          Таблицы раньше использовались для позиционирования элементов на
+          странице. Сейчас же их основное предназначение - это отображение
+          табличных данных.
+        </p>
+
+        <h2>Перечень табличных тегов</h2>
+        <!-- ul>li*5>code 
+        &lt;ТЕГ &gt;
+        
+        ul>li*5>code{&lt;ТЕГ&gt;}+{- этот тег отвечает за}
+        -->
+        <ul>
+          <li>
+            <code>&lt;table&gt;</code>- этот тег отвечает за открытие таблицы
+          </li>
+          <li>
+            <code>&lt;tr&gt;</code>- этот тег отвечает за полосу в таблице
+          </li>
+          <li>
+            <code>&lt;td&gt;</code>- этот тег отвечает за ячейку в таблице
+          </li>
+          <li>
+            <code>&lt;tbody&gt;</code>- этот тег отвечает за тело таблицы
+            <em>(опционально)</em>
+          </li>
+          <li>
+            <code>&lt;thead&gt;</code>- этот тег отвечает за заголовок таблицы
+            <em>(опционально)</em>
+          </li>
+          <li>
+            <code>&lt;tfoot&gt;</code>- этот тег отвечает за подвал таблицы
+            <em>(опционально)</em>
+          </li>
+          <li>
+            <code>&lt;th&gt;</code>- этот тег отвечает за ячейку заголовка
+            таблицы
+          </li>
+          <li>
+            <code>&lt;caption&gt;</code>- этот тег отвечает за заголовок таблицы
+            <em>(опционально)</em>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Пример простой таблицы 3 на 3</h2>
+        <p>
+            Чтобы таблица отображалась нормально, нам нужно использовать определенное количество <abbr title="Cascading Style Sheets">CSS</abbr> свойств.
+        </p>
+        <ul class="checked">
+            <li><code>border-collapse: collapse;</code> - убирает двойные границы</li>
+            <li><code>border: 1px solid black;</code> - добавляет визуально линии ячеек</li>
+        </ul>
+        <table>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>Семантические теги в таблицах</h2>
+        <p>
+          Семантические теги в таблицах помогают лучше структурировать данные и
+          делают их более доступными для поисковых систем и вспомогательных
+          технологий.
+        </p>
+
+        <ul>
+            <li>
+                <code>&lt;thead&gt;</code> - используется для определения заголовка
+                таблицы.
+            </li>
+            <li>
+                <code>&lt;tbody&gt;</code> - используется для определения тела
+                таблицы.
+            </li>
+            <li>
+                <code>&lt;tfoot&gt;</code> - используется для определения подвала
+                таблицы.
+            </li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Возраст</th>
+                    <th>Город</th>
+                    <th>Фотография</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Гендальф</td>
+                    <td>1200</td>
+                    <td>Средиземье</td>
+                    <td><img src="https://i.pinimg.com/736x/2b/ba/6f/2bba6f8ca6368850f306c96e3778cfe1.jpg" alt="Фотография Гендальфа"></td>
+                </tr>
+                <tr>
+                    <td>Фродо</td>
+                    <td>30</td>
+                    <td>Шир</td>
+                    <td><img src="https://30c57e491d34574ac3c4-d69fd22d5bffeab44970d3ac75e05830.ssl.cf2.rackcdn.com/production/user/quizzes/300132/1526906105.png" alt="Фотография Фродо"></td>
+                </tr>
+                <tr>
+                    <td>Леголас</td>
+                    <td>60</td>
+                    <td>Лесное королевство</td>
+                    <td><img src="https://i.pinimg.com/736x/98/71/4e/98714e8a1f31bab5fa07b9566b7a1a42.jpg" alt="Фотография Леголаса"></td>
+                </tr>
+            </tbody>
+            <!-- <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><img src="" alt=""></td>
+                </tr>
+            </tfoot> -->
+        </table>
+      </section>
+      <section></section>
+      <section></section>
+      <section></section>
+
+    </main>
+    <footer>подвал</footer>
+  </body>
+</html>

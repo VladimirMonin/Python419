@@ -1,0 +1,37 @@
+/* Сделаем таблицу нормальной */
+table {
+    border-collapse: collapse;
+    /* max-width: 50%; */
+    /* min-width: 400px; */
+    text-align: center;
+    /* Горизонтальная прокрутка когда таблица не влазит в экран */
+    overflow-x: auto;
+    /* 
+    Display block для того, чтобы таблица не растягивала родителя
+    и не вызывала горизонтальную прокрутку для всей страницы
+    */
+    display: block;
+
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Как добавить перед каждой li */
+/* ul.checked>li::before {
+    content: "✅";
+} */
+
+li::before {
+    content: "✅";
+}
+
+img {
+    max-width: 8vw;
+}
