@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="lesson_9.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="lesson_9.css" />
     <title>Урок 9. Формы в HTML</title>
-</head>
-<body>
-    <!-- http://127.0.0.1:5500/lesson_9/lesson_9.html?username=zorro&password=12345 -->
-    <form action="">
-        <input type="text" name="username">
-        <input type="password" name="password">
-        <button>
+  </head>
+  <body>
+    <!-- http://127.0.0.1:5500/users/login -->
+    <form action="/users/login" method="POST">
+      <div>
+        <!-- <label for="username">Имя пользователя:</label> -->
+        <input type="email" name="email" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
+
+      </div>
+      <div>
+        <!-- <label for="password">Пароль:</label> -->
+        <input type="password" name="password" placeholder="Пароль" required title="Введите пароль" />
+      </div>
+      <!-- Чекбокс запомнить меня на сайте -->
+        <div>
+            <input type="checkbox" name="rememberMe" />
+            <label for="rememberMe">Запомнить меня</label>
+        </div>
+      <button>
         <span>Авторизоваться</span>
-    </button>
+      </button>
     </form>
-</body>
+  </body>
 </html>
