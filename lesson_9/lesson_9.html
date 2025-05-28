@@ -60,21 +60,105 @@
         <label for="searchInTags">В тегах</label>
       </div>
       <!-- Переключатель радиокнопка регистрозависимость поиска -->
-       <!-- div>lable+input:radio+lable+input:radio -->
-        <!-- div>lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="true"]+lable[for="caseSensitiveTrue"]{Регистрозависимый}+lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="false"]+lable[for="caseSensitiveTrue"]{Регистронезависимый} -->
-       <div>
+      <!-- div>lable+input:radio+lable+input:radio -->
+      <!-- div>lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="true"]+lable[for="caseSensitiveTrue"]{Регистрозависимый}+lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="false"]+lable[for="caseSensitiveTrue"]{Регистронезависимый} -->
+      <div>
         <lable for="caseSensitive"></lable>
-        <input type="radio" name="caseSensitive" id="" value="true">
+        <input type="radio" name="caseSensitive" id="" value="true" />
         <lable for="caseSensitiveTrue">Регистрозависимый</lable>
         <lable for="caseSensitive"></lable>
-        <input type="radio" name="caseSensitive" id="" value="false">
+        <input type="radio" name="caseSensitive" id="" value="false" />
         <lable for="caseSensitiveTrue">Регистронезависимый</lable>
-       </div>
-
-
+      </div>
       <button type="submit">
         <span>Найти</span>
       </button>
+    </form>
+    <h2>Форма заказа пиццы</h2>
+    <form action="/order/pizza" method="POST">
+      <!-- Семантика в формах. Fieldset и legend -->
+      <fieldset>
+        <legend>Пицца</legend>
+        <!-- Выпадающее меню с типом пиццы -->
+        <!-- lable[for="pizzaType"]{Выберите пиццу}+select[name="pizzaType"]>option*5{$} -->
+        <lable for="pizzaType">Выберите пиццу</lable>
+        <select name="pizzaType">
+          <option value="pepperoni">Пепперони</option>
+          <option value="horse_meat">С кониной</option>
+          <option value="julienne">Жульен</option>
+          <option value="hawaiian">Гавайская</option>
+          <option value="cheesy_chicken">Сырный цыпленок</option>
+        </select>
+
+        <!-- Радиокнопки - размер 25-30-35 -->
+        <input type="radio" name="pizzaSize" id="pizzaSize25" value="25" />
+        <lable for="pizzaSize25">25 сантиметров</lable>
+        <input type="radio" name="pizzaSize" id="pizzaSize30" value="30" />
+        <lable for="pizzaSize30">30 сантиметров</lable>
+        <input type="radio" name="pizzaSize" id="pizzaSize35" value="35" />
+        <lable for="pizzaSize35">35 сантиметров</lable>
+      </fieldset>
+
+      <!-- Адрес -->
+      <fieldset>
+        <legend>Адрес доставки</legend>
+        <!-- lable[for="address"]+input:text[name="address" placeholder="Введите адрес" required] -->
+        <lable for="street">Улица</lable>
+        <input
+          type="text"
+          name="street"
+          id=""
+          placeholder="Введите улицу"
+          required="required"
+        />
+        <lable for="building">Дом</lable>
+        <input
+          type="text"
+          name="building"
+          id=""
+          placeholder="Введите номер дома"
+          required="required"
+        />
+        <lable for="apartment">Квартира</lable>
+        <input
+          type="text"
+          name="apartment"
+          id=""
+          placeholder="Введите номер квартиры"
+          required="required"
+        />
+        <!-- input:radio[name="domofon" value="true"]+lable{Домофон работает}+input:radio[name="domofon" value="false"]+lable{Домофона нет} -->
+        <input type="radio" name="domofon" value="true" />
+        <lable>Домофон работает</lable>
+        <input type="radio" name="domofon" value="false" />
+        <lable>Домофона нет</lable>
+      </fieldset>
+
+      <!-- Блок с количеством персон, комментарием, а так же желаемой дата и время доставки -->
+        <fieldset>
+            <legend>Дополнительная информация</legend>
+            <!-- input[type="number"][name="peopleCount" min="1" max="10" required] -->
+            <lable for="peopleCount">Количество персон</lable>
+            <input
+            type="number"
+            name="peopleCount"
+            min="1"
+            max="10"
+            required
+            />
+            <!-- textarea[name="comment" placeholder="Комментарий к заказу"] -->
+            <lable for="comment">Комментарий к заказу</lable>
+            <textarea name="comment" placeholder="Комментарий к заказу"
+            rows="5"
+            cols="20"
+            ></textarea>
+            <!-- input[type="datetime-local"][name="deliveryTime"] -->
+            <lable for="deliveryTime">Желаемая дата</lable>
+            <input type="date" name="deliveryTime" min="2025-05-28" max="2025-05-30" required />
+            <lable for="deliveryTime">Желаемое время</lable>
+            <input type="time" name="deliveryTime" min="09:00" max="21:00" required />
+
+      <button type="submit">Заказать</button>
     </form>
   </body>
 </html>
