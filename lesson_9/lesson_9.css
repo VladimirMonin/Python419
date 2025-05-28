@@ -1,0 +1,155 @@
+/* Стилизация формы заказа пиццы */
+
+/* Основной контейнер формы заказа пиццы */
+#PizzaForm {
+  /* Центрируем форму и задаём фиксированную ширину */
+  width: 440px;
+  margin: 40px auto 0 auto;
+  background: #f9fafc; /* светлый фон для выделения формы */
+  border-radius: 18px; /* скругляем углы */
+  box-shadow: 0 4px 24px 0 rgba(60, 60, 100, 0.1); /* мягкая тень */
+  padding: 32px 32px 24px 32px; /* внутренние отступы */
+  border: 1px solid #e0e4ea; /* светлая рамка */
+}
+
+/* Стилизация fieldset — группировка блоков формы */
+#PizzaForm fieldset {
+  border: none; /* убираем стандартную рамку */
+  background: #fff; /* белый фон для контраста */
+  border-radius: 12px;
+  margin-bottom: 22px; /* отступ между блоками */
+  padding: 18px 18px 12px 18px;
+  box-shadow: 0 2px 8px 0 rgba(60, 60, 100, 0.04); /* лёгкая тень */
+}
+
+/* Стилизация legend — заголовки блоков */
+#PizzaForm legend {
+  font-size: 1.15em;
+  font-weight: bold;
+  color: #3a3a5a;
+  margin-bottom: 10px;
+  padding: 0 6px;
+}
+
+/* Стилизация label (у вас опечатка: lable, но стилизуем и label, и lable) */
+#PizzaForm label,
+#PizzaForm lable {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+  font-size: 1em;
+  letter-spacing: 0.01em;
+}
+
+/* Стилизация текстовых полей, select и textarea */
+#PizzaForm input[type="text"],
+#PizzaForm input[type="number"],
+#PizzaForm input[type="date"],
+#PizzaForm input[type="time"],
+#PizzaForm select,
+#PizzaForm textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 14px;
+  border: 1px solid #cfd8dc;
+  border-radius: 7px;
+  background: #f5f7fa;
+  font-size: 1em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+/* Эффект при фокусе на поле */
+#PizzaForm input[type="text"]:focus,
+#PizzaForm input[type="number"]:focus,
+#PizzaForm input[type="date"]:focus,
+#PizzaForm input[type="time"]:focus,
+#PizzaForm select:focus,
+#PizzaForm textarea:focus {
+  border-color: #7b9cff;
+  box-shadow: 0 0 0 2px #e3eaff;
+  outline: none;
+}
+
+/* Радиокнопки и чекбоксы — выравнивание и отступы */
+#PizzaForm input[type="radio"],
+#PizzaForm input[type="checkbox"] {
+  margin-right: 7px;
+  margin-bottom: 6px;
+  vertical-align: middle;
+}
+
+/* Радиокнопки размера пиццы и домофона — в одну строку с подписью */
+#PizzaForm input[type="radio"] + lable,
+#PizzaForm input[type="radio"] + label {
+  display: inline-block;
+  margin-right: 18px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #3a3a5a;
+}
+
+/* Радиокнопки размера пиццы — каждая на новой строке */
+#PizzaForm .pizza-size-row {
+  display: block;
+  margin-bottom: 2px;
+  /* Для выравнивания подписи и радиокнопки по вертикали */
+  line-height: 1.1;
+}
+#PizzaForm .pizza-size-row input[type="radio"] {
+  margin-right: 2px;
+  margin-bottom: 0;
+}
+#PizzaForm .pizza-size-row lable,
+#PizzaForm .pizza-size-row label {
+  display: inline;
+  font-weight: 500;
+  color: #3a3a5a;
+}
+
+/* Кнопка отправки заказа */
+#PizzaForm button[type="submit"] {
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #ffb347 0%,
+    #ffcc80 100%
+  ); /* градиент для яркости */
+  color: #3a3a5a;
+  font-size: 1.15em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px 0 rgba(255, 180, 71, 0.1);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Эффект наведения на кнопку */
+#PizzaForm button[type="submit"]:hover {
+  background: linear-gradient(90deg, #ffa726 0%, #ffd54f 100%);
+  box-shadow: 0 4px 16px 0 rgba(255, 180, 71, 0.18);
+}
+
+/* Дополнительные отступы между элементами формы */
+#PizzaForm .form-row {
+  margin-bottom: 14px;
+}
+
+/* Стилизация textarea — запрет на изменение размера */
+#PizzaForm textarea {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 180px;
+}
+
+/* Мелкие правки для лучшей читаемости */
+#PizzaForm ::placeholder {
+  color: #b0b8c1;
+  opacity: 1;
+}
+
+
+

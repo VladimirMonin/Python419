@@ -75,7 +75,7 @@
       </button>
     </form>
     <h2>Форма заказа пиццы</h2>
-    <form action="/order/pizza" method="POST">
+    <form action="/order/pizza" method="POST" id="PizzaForm">
       <!-- Семантика в формах. Fieldset и legend -->
       <fieldset>
         <legend>Пицца</legend>
@@ -91,12 +91,18 @@
         </select>
 
         <!-- Радиокнопки - размер 25-30-35 -->
-        <input type="radio" name="pizzaSize" id="pizzaSize25" value="25" />
-        <lable for="pizzaSize25">25 сантиметров</lable>
-        <input type="radio" name="pizzaSize" id="pizzaSize30" value="30" />
-        <lable for="pizzaSize30">30 сантиметров</lable>
-        <input type="radio" name="pizzaSize" id="pizzaSize35" value="35" />
-        <lable for="pizzaSize35">35 сантиметров</lable>
+        <div class="pizza-size-row">
+          <input type="radio" name="pizzaSize" id="pizzaSize25" value="25" />
+          <lable for="pizzaSize25">25 сантиметров</lable>
+        </div>
+        <div class="pizza-size-row">
+          <input type="radio" name="pizzaSize" id="pizzaSize30" value="30" />
+          <lable for="pizzaSize30">30 сантиметров</lable>
+        </div>
+        <div class="pizza-size-row">
+          <input type="radio" name="pizzaSize" id="pizzaSize35" value="35" />
+          <lable for="pizzaSize35">35 сантиметров</lable>
+        </div>
       </fieldset>
 
       <!-- Адрес -->
