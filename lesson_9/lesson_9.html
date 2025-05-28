@@ -8,23 +8,72 @@
   </head>
   <body>
     <!-- http://127.0.0.1:5500/users/login -->
+    <h2>Форма авторизации</h2>
     <form action="/users/login" method="POST">
       <div>
-        <!-- <label for="username">Имя пользователя:</label> -->
-        <input type="email" name="email" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
-
+        <label for="username">Имя пользователя:</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          required
+        />
       </div>
+      >
       <div>
-        <!-- <label for="password">Пароль:</label> -->
-        <input type="password" name="password" placeholder="Пароль" required title="Введите пароль" />
+        <label for="password">Пароль:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          required
+          title="Введите пароль"
+        />
       </div>
       <!-- Чекбокс запомнить меня на сайте -->
-        <div>
-            <input type="checkbox" name="rememberMe" />
-            <label for="rememberMe">Запомнить меня</label>
-        </div>
+      <div>
+        <input type="checkbox" name="rememberMe" value="true" />
+        <label for="rememberMe">Запомнить меня</label>
+      </div>
       <button>
         <span>Авторизоваться</span>
+      </button>
+    </form>
+    <h2>Форма поиска</h2>
+    <form action="/search">
+      <!-- Ввод запроса -->
+      <label for="query">Поиск:</label>
+      <input type="text" name="query" placeholder="Введите запрос" required />
+
+      <!-- 3 чекбокса - Искать в заголовках, категориях и тегах -->
+      <div>
+        <input type="checkbox" name="searchInTitles" value="true" checked />
+        <label for="searchInTitles">В заголовках</label>
+      </div>
+      <div>
+        <input type="checkbox" name="searchInCategories" value="true" checked />
+        <label for="searchInCategories">В категориях</label>
+      </div>
+      <div>
+        <input type="checkbox" name="searchInTags" value="true" checked />
+        <label for="searchInTags">В тегах</label>
+      </div>
+      <!-- Переключатель радиокнопка регистрозависимость поиска -->
+       <!-- div>lable+input:radio+lable+input:radio -->
+        <!-- div>lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="true"]+lable[for="caseSensitiveTrue"]{Регистрозависимый}+lable[for="caseSensitive"]+input:radio[name="caseSensitive" value="false"]+lable[for="caseSensitiveTrue"]{Регистронезависимый} -->
+       <div>
+        <lable for="caseSensitive"></lable>
+        <input type="radio" name="caseSensitive" id="" value="true">
+        <lable for="caseSensitiveTrue">Регистрозависимый</lable>
+        <lable for="caseSensitive"></lable>
+        <input type="radio" name="caseSensitive" id="" value="false">
+        <lable for="caseSensitiveTrue">Регистронезависимый</lable>
+       </div>
+
+
+      <button type="submit">
+        <span>Найти</span>
       </button>
     </form>
   </body>
