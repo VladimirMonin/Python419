@@ -1,0 +1,83 @@
+body {
+  background-color: rgb(221, 236, 250);
+  font: Arial;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: rgb(230, 219, 142);
+}
+
+
+
+img {
+  border-radius: 10px;
+  max-width: 90%;
+}
+
+section {
+  text-align: center;
+}
+
+section > div {
+  display: inline-block;
+  max-width: 40%;
+  vertical-align: middle;
+  min-width: 300px;
+}
+
+section > div.img {
+  text-align: center;
+  max-width: 20%;
+  min-width: 300px;
+}
+
+section > div.card {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin: 10px;
+  max-width: 10%;
+  min-width: 250px;
+}
+
+
+/* blockquote::before {
+  content: "❝";
+  font-size: 2em;
+  color: rgb(211, 193, 61);
+}
+
+blockquote::after {
+  content: "❞";
+  font-size: 2em;
+  color: rgb(211, 193, 61);
+} */
+
+/* Цитата первый ребенок параграф */
+
+blockquote {
+  margin-top: 30px;
+  min-width: 320px;
+  font-style: italic;
+  color: rgb(17, 17, 24);
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+blockquote > p:first-child::before {
+  content: "❝";
+  font-size: 2em;
+  color: rgb(211, 193, 61);
+}
+
+blockquote > p:last-child::after {
+  content: "❞";
+  font-size: 2em;
+  color: rgb(211, 193, 61);
+}
+
+blockquote > p {
+  margin: -15px;
+}

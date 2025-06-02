@@ -1,0 +1,46 @@
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  text-align: center;
+  background-color: #333;
+}
+
+nav li {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ccc;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+nav li:hover {
+  background-color: #ece11e;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header,
+section {
+  /* padding: 20px; */
+  margin: 20px 30px;
+}
+
+section {
+  background: #f4f4f4;
+  padding: 20px;
+  margin: 20px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+code {
+  background: #e8efc0;
+  padding: 1px;
+  border-radius: 2px;
+}
