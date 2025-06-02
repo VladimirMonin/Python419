@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блочная модель CSS</title>
+    <link rel="stylesheet" href="lesson_10.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <h1>Блочная модель CSS</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#model">Блочная модель</a></li>
+            <li><a href="#display">Display</a></li>
+            <li><a href="#width-height">Width/Height</a></li>
+            <li><a href="#padding">Padding</a></li>
+            <li><a href="#border">Border</a></li>
+            <li><a href="#margin">Margin</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="model">
+            <h2>Что такое блочная модель?</h2>
+            <p>Блочная модель CSS - это фундаментальная концепция, определяющая как элементы отображаются на веб-странице. Каждый HTML-элемент представляет собой прямоугольный блок, который состоит из четырех основных частей:</p>
+            <ul>
+                <li><strong>Содержимое (content)</strong> - область, где отображается текст, изображения и другой контент</li>
+                <li><strong>Внутренние отступы (padding)</strong> - прозрачная область вокруг содержимого</li>
+                <li><strong>Границы (border)</strong> - рамка вокруг padding и содержимого</li>
+                <li><strong>Внешние отступы (margin)</strong> - прозрачная область за пределами границы</li>
+            </ul>
+            
+            <h3>Принципы расчета отступов</h3>
+            <p>Отступы (margin и padding) рассчитываются по следующим правилам:</p>
+            <ul>
+                <li><strong>Процентные значения</strong> - рассчитываются от <em>ширины</em> родительского элемента</li>
+                <li><strong>Абсолютные значения</strong> (px, em, rem) - используются как есть</li>
+                <li><strong>Auto значение</strong> - автоматически рассчитывается браузером</li>
+            </ul>
+            
+            <p>Пример расчета процентных отступов:</p>
+            <pre><code class="language-css">.parent {
+    width: 600px;
+}
+
+.child {
+    margin: 10%; /* 60px (10% от 600px) */
+    padding: 5%; /* 30px (5% от 600px) */
+}</code></pre>
+            
+            <p>Общая ширина элемента рассчитывается по формуле:</p>
+            <pre><code class="language-css">ширина = margin-left + border-left + padding-left + 
+        width + padding-right + border-right + margin-right</code></pre>
+            <p>Аналогично рассчитывается и высота элемента.</p>
+        </section>
+        
+        <section id="display">
+            <h2>Свойство Display и типы элементов</h2>
+            <p>Свойство <code>display</code> определяет тип отображения элемента. Основные значения:</p>
+            
+            <h3>1. Блочные элементы (display: block)</h3>
+            <ul>
+                <li>Занимают всю доступную ширину</li>
+                <li>Начинаются с новой строки</li>
+                <li>Можно задавать ширину/высоту, отступы</li>
+
+                <li>Примеры: <code><div></code>, <code><h1></code> - <code><h6></code>, <code><p></code></li>
+            </ul>
+            <div class="display-demo">
+                <div class="demo-block">Блочный элемент 1</div>
+                <div class="demo-block">Блочный элемент 2</div>
+            </div>
+            
+            <h3>2. Строчные элементы (display: inline)</h3>
+            <ul>
+                <li>Занимают только необходимую ширину</li>
+                <li>Не начинаются с новой строки</li>
+                <li>Нельзя задавать ширину/высоту, вертикальные отступы</li>
+                <li>Примеры: <code><span></code>, <code><a></code>, <code><strong></code></li>
+            </ul>
+            <div class="display-demo">
+                <span class="demo-inline">Строчный элемент 1</span>
+                <span class="demo-inline">Строчный элемент 2</span>
+            </div>
+            
+            <h3>3. Строчно-блочные элементы (display: inline-block)</h3>
+            <ul>
+                <li>Объединяют особенности блочных и строчных элементов</li>
+                <li>Занимают только необходимую ширину</li>
+                <li>Можно задавать ширину/высоту, отступы</li>
+                <li>Не начинаются с новой строки</li>
+            </ul>
+            <div class="display-demo">
+                <div class="demo-inline-block">Строчно-блочный</div>
+                <div class="demo-inline-block">Элемент</div>
+            </div>
+            
+            <h3>4. Скрытие элементов (display: none)</h3>
+            <p>Полностью удаляет элемент из потока документа.</p>
+            <div class="display-demo">
+                <div class="demo-none">Этот элемент скрыт</div>
+            </div>
+        </section>
+        
+        <section id="width-height">
+            <h2>Width и Height</h2>
+            <p>Свойства <code>width</code> и <code>height</code> определяют размеры <strong>содержимого</strong> элемента. Важно помнить, что реальная ширина/высота блока складывается из:</p>
+            <ul>
+                <li>Ширины/высоты содержимого</li>
+                <li>Внутренних отступов (padding)</li>
+                <li>Границ (border)</li>
+                <li>Внешних отступов (margin)</li>
+            </ul>
+            <p>Пример:</p>
+            <pre><code class="language-css">.element {
+    width: 200px;   /* Ширина содержимого */
+    height: 100px;  /* Высота содержимого */
+    padding: 20px;  /* Внутренние отступы */
+    border: 2px solid black; /* Граница */
+    margin: 10px;   /* Внешние отступы */
+}</code></pre>
+            <p>Общая ширина этого элемента: 10px (margin-left) + 2px (border-left) + 20px (padding-left) + 200px (width) + 20px (padding-right) + 2px (border-right) + 10px (margin-right) = 264px</p>
+            <div class="demo-box content-demo">Блок с width: 200px; height: 100px;</div>
+        </section>
+        
+        <section id="padding">
+            <h2>Padding</h2>
+            <p>Padding - внутренние отступы между содержимым и границей элемента. Управляются свойствами:</p>
+            <ul>
+                <li><code>padding-top</code></li>
+                <li><code>padding-right</code></li>
+                <li><code>padding-bottom</code></li>
+                <li><code>padding-left</code></li>
+            </ul>
+            <p>Или сокращенным свойством <code>padding</code>:</p>
+            <pre><code class="language-css">/* 1 значение: все стороны */
+padding: 10px;
+
+/* 2 значения: вертикальные | горизонтальные */
+padding: 10px 20px;
+
+/* 3 значения: верх | горизонтальные | низ */
+padding: 10px 20px 15px;
+
+/* 4 значения: верх | право | низ | лево */
+padding: 10px 20px 15px 5px;</code></pre>
+            <p>Padding влияет на внутреннее пространство элемента и его общие размеры.</p>
+            <div class="demo-box">
+                <div class="padding-demo">Блок с padding: 20px;</div>
+            </div>
+        </section>
+        
+        <section id="border">
+            <h2>Border</h2>
+            <p>Border - граница вокруг элемента, расположенная между padding и margin. Состоит из трех свойств:</p>
+            <pre><code class="language-css">border-width: 3px;      /* Толщина границы */
+border-style: dashed;   /* Стиль границы */
+border-color: red;      /* Цвет границы */</code></pre>
+            <p>Или сокращенная запись:</p>
+            <pre><code class="language-css">border: 3px dashed red;</code></pre>
+            <p>Основные стили границ:</p>
+            <ul>
+                <li><code>solid</code> - сплошная линия</li>
+                <li><code>dashed</code> - пунктирная</li>
+                <li><code>dotted</code> - точечная</li>
+                <li><code>double</code> - двойная</li>
+                <li><code>groove</code> - 3D желоб</li>
+            </ul>
+            <p>Граница добавляется к общим размерам элемента.</p>
+            <div class="demo-box border-demo">Блок с border: 3px dashed red;</div>
+        </section>
+        
+        <section id="margin">
+            <h2>Margin - внешние отступы</h2>
+            <p>Margin создает пространство вокруг элемента, отделяя его от соседних элементов. Основные особенности:</p>
+            
+            <h3>1. Положительные margin</h3>
+            <p>Добавляют пространство между элементами:</p>
+            <div class="margin-demo-container">
+                <div class="demo-box">Элемент 1</div>
+                <div class="demo-box margin-positive">Элемент с margin: 20px;</div>
+                <div class="demo-box">Элемент 2</div>
+            </div>
+            
+            <h3>2. Отрицательные margin</h3>
+            <p>Уменьшают пространство между элементами, могут даже перекрывать их:</p>
+            <div class="margin-demo-container">
+                <div class="demo-box">Обычный блок</div>
+                <div class="demo-box margin-negative">Блок с margin-top: -15px;</div>
+            </div>
+            <pre><code class="language-css">.negative-margin {
+    margin-top: -15px; /* Сдвигает элемент вверх */
+}</code></pre>
+            
+            <h3>3. Схлопывание margin (margin collapsing)</h3>
+            <p>Когда два вертикальных margin встречаются, они схлопываются в один больший margin:</p>
+            <div class="collapsing-demo">
+                <div class="demo-box collapsing-box">Блок с margin-bottom: 30px;</div>
+                <div class="demo-box collapsing-box">Блок с margin-top: 20px;</div>
+            </div>
+            <p>Фактический отступ между блоками: 30px (больший margin), а не 50px.</p>
+            
+            <h3>Синтаксис</h3>
+            <pre><code class="language-css">margin: 10px;            /* Все стороны */
+margin: 10px 20px;       /* Вертикальные | горизонтальные */
+margin: 10px 20px 15px;  /* Верх | горизонтальные | низ */
+margin: 10px 20px 15px 5px; /* Верх | право | низ | лево */</code></pre>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Учебный проект по блочной модели CSS</p>
+    </footer>
+</body>
+</html>
