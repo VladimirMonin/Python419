@@ -1,85 +1,157 @@
-/* Осваиваем Flex-box */
-
-/* Делаем Flex контейнер */
-
-.container {
+/* Стили для body - обеспечивают, чтобы подвал был внизу */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
-  /* Горизонтальная прокрутка контейнера если надо */
-  /* overflow-x: auto; Позволяет горизонтальную прокрутку, если элементы не помещаются */
-  gap: 2px; /* Отступы между элементами */
-  /* Justify content для выравнивания элементов */
-  /* Варианты: flex-start, flex-end, center, space-between, space-around, space-evenly */
-  justify-content: space-around; /* Выравнивание элементов по горизонтали */
-  /*  Подсветим контейнер */
-  border: 1px solid #c56f6f; /* Рамка вокруг контейнера */
-  background-color: #ced6e8; /* Светлый фон для контейнера */
-  min-height: 50vh;
+  flex-direction: column;
+  /* Контент по центру */
+  align-items: center;
+}
 
-  /* Вертикальное выравнивание
-    Свойство align-items определяет выравнивание элементов по вертикали */
-  /* Варианты: 
-    flex-start - выравнивание по верхнему краю,
-    flex-end - выравнивание по нижнему краю,
-    center - выравнивание по центру,
-    baseline - выравнивание по базовой линии,
-    stretch - растягивание элементов */
-  align-items: baseline; /* Выравнивание элементов по вертикали */
+main {
+  flex: 1; /* Основное содержимое занимает все доступное пространство */
+}
 
-  /* Направление регулируется через
-    - flex-direction:
-    row - элементы располагаются в строку (по умолчанию),
-    row-reverse - элементы располагаются в строку в обратном порядке,
-    column - элементы располагаются в столбик,
-    column-reverse - элементы располагаются в столбик в обратном порядке.;
-    
+/* Стили для основного контейнера страницы */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Стили для основного контейнера карточки */
+.card {
+  width: 300px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 500px; /* Примерная высота, подберите значение под ваш контент. Это обеспечит одинаковую высоту всех карточек. */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: start; /* Текст будет начинаться сверху блока */
+  flex-grow: 1; /* Этот блок займет все доступное пространство между card-head и card-footer */
+  /* Если вы хотите, чтобы сам текст внутри .card-body был вертикально по центру, 
+     можно добавить padding или использовать вложенный flex-контейнер. 
+     Но для выравнивания заголовков и футеров это не обязательно. */
+}
+
+img {
+  /* Впишем изображение в карточку равномерно */
+  width: 100%;
+  height: 200px;
+  /* 
+    object-fit - это свойство CSS, которое позволяет контролировать, как содержимое элемента (например, изображение) вписывается в заданные размеры контейнера.
+
+    object-position - это свойство CSS, которое позволяет контролировать, как содержимое элемента (например, изображение) позиционируется внутри контейнера.
     */
-  flex-direction: row;
+  object-fit: cover; /* Изображение будет масштабироваться, чтобы заполнить контейнер, сохраняя пропорции */
+  object-position: left center; /* Центрируем изображение внутри контейнера */
 }
 
-.item {
-  border: 1px solid #c56f6f;
-  background-color: #f0f0f0;
-  /* max-width: 130px; Закомментировали max-width */
-  max-width: 200px;
-  width: 130px; /* Фиксированная ширина элемента - элементы будут точно 130px */
-  min-width: 100px; /* Минимальная ширина элемента */
-  /* padding: 10px; */
-  height: 100px; /* Высота элемента */
-  text-align: center;
-  margin: 5px; /* Отступы между элементами */
+/* Медиа запрос который выключит <span class="btn-text" при ширине экрана МЕНЬШЕ 400px */
+@media (max-width: 400px) {
+  span.btn-text {
+    display: none; /* Скрываем текстовую часть кнопки на мобильных устройствах */
+  }
 }
 
-/* Управление элементами контейнера
-order - определяет порядок отображения элементов в контейнере.
-
-*/
-
-#item1 {
-  order: 0; /* Элемент будет отображаться стандартно */
-  background-color: #c56f6f;
-  /* Мы можем изменить выравнивание для конкретного элемента
-    align-self:
-    - flex-start - выравнивание по верхнему краю,
-    - flex-end - выравнивание по нижнему краю,
-    - center - выравнивание по центру,
-    - baseline - выравнивание по базовой линии,
-    - stretch - растягивание элемента на всю высоту контейнера */
-  align-self: flex-end; /* Элемент будет выровнен по центру по вертикали */
-  /* Еще свойства которые можно задать флекс элементам:display:
-    - flex-shrink - определяет, как элемент будет сжиматься, если не хватает места,
-    - flex-grow - определяет, как элемент будет расти, если есть свободное место,
-    - flex-basis - определяет начальный размер элемента перед применением flex-grow и flex-shrink.
-    - flex - сокращенная запись для flex-grow, flex-shrink и flex-basis.
-    */
-  /* flex-basis: 100px; Начальный размер элемента */
-  flex-grow: 3; /* Элемент будет расти, занимая свободное место */
-  flex-shrink: 3; /* Элемент будет сжиматься, если не хватает места */
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
 }
 
-#item2 {
-  order: 0; /* Элемент будет отображаться стандартно */
-  background-color: #c56f6f;
-  flex-grow: 2;
-  flex-shrink: 2;
+/* Простые стили для подвала */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  margin-top: auto; /* Подвал всегда внизу страницы */
+}
+
+/* Основной контейнер подвала - карта слева, контент справа */
+.footer-content-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content-wrapper iframe {
+  flex: 1;
+  max-width: 500px;
+  height: 300px;
+}
+
+.footer-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-section h3 {
+  color: #07057f;
+  margin: 0 0 10px 0;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #07057f;
+}
+
+.footer-social i {
+  margin-right: 5px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer-content-wrapper {
+    flex-direction: column;
+  }
+
+  .footer-content-wrapper iframe {
+    max-width: 100%;
+    height: 250px;
+  }
+}
+
+.card-footer button {
+  padding: 5px;
+  background-color: #07057f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card-footer button:hover {
+  background-color: #00000b;
+  transform: scale(1.05);
 }
