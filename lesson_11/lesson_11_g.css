@@ -1,0 +1,563 @@
+
+/* --- Общие стили для всей страницы --- */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Более современный шрифт для лучшей читаемости */
+  margin: 0; /* Убираем стандартные внешние отступы браузера */
+  padding: 20px; /* Внутренний отступ вокруг всего содержимого страницы */
+  background-color: #f0f2f5; /* Светло-серый фон для всей страницы */
+  color: #333; /* Темно-серый цвет текста по умолчанию */
+  line-height: 1.6; /* Увеличиваем межстрочный интервал для улучшения читаемости длинных текстов */
+}
+
+.page-wrapper {
+  /* Обертка для основного контента страницы, помогает центрировать и ограничивать ширину */
+  max-width: 1000px; /* Ограничиваем максимальную ширину контента для удобства чтения на больших экранах */
+  margin: 0 auto; /* Центрируем блок page-wrapper по горизонтали */
+  background-color: #fff; /* Белый фон для основного содержимого документа */
+  padding: 20px 30px; /* Внутренние отступы внутри обертки */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Легкая тень для придания объема и отделения от фона */
+  border-radius: 8px; /* Скругленные углы для более мягкого вида */
+}
+
+h1,
+h2,
+h3 {
+  color: #2c3e50; /* Темно-синий цвет для всех заголовков */
+  margin-top: 1.5em; /* Отступ сверху для заголовков */
+  margin-bottom: 0.8em; /* Отступ снизу для заголовков */
+}
+h1 {
+  text-align: center; /* Выравнивание главного заголовка по центру */
+  color: #3498db; /* Яркий синий цвет для главного заголовка */
+  border-bottom: 2px solid #ecf0f1; /* Светлая линия под главным заголовком для визуального разделения */
+  padding-bottom: 10px; /* Отступ между текстом заголовка и линией */
+}
+h2 {
+  border-left: 4px solid #3498db; /* Акцентная синяя линия слева от заголовка */
+  padding-left: 10px; /* Отступ между линией и текстом заголовка */
+  color: #34495e; /* Чуть светлее, чем h1, для второстепенных заголовков */
+}
+h3 {
+  color: #7f8c8d; /* Серый цвет для подзаголовков внутри примеров, чтобы отличать их */
+}
+
+p {
+  margin-bottom: 1em; /* Отступ снизу для параграфов */
+}
+
+/* Стили для контейнеров примеров Flexbox */
+.container {
+  background-color: #ecf0f1; /* Очень светлый серый фон для демонстрационных контейнеров */
+  border: 1px solid #bdc3c7; /* Серая рамка вокруг контейнера */
+  padding: 15px; /* Внутренний отступ внутри контейнера */
+  margin-bottom: 25px; /* Отступ снизу, чтобы отделить примеры друг от друга */
+  border-radius: 6px; /* Скругленные углы для контейнеров */
+}
+
+/* Стили для отдельных flex-элементов внутри контейнеров */
+.item {
+  background-color: #3498db; /* Яркий синий фон для flex-элементов */
+  border: 1px solid #2980b9; /* Темно-синяя рамка для элементов */
+  padding: 15px 20px; /* Увеличим внутренние отступы */
+  margin: 5px;
+  text-align: center;
+  font-size: 1.1em; /* Немного увеличим шрифт */
+  font-weight: bold;
+  color: white;
+  border-radius: 4px; /* Скругленные углы для элементов */
+  min-width: 60px; /* Минимальная ширина для лучшей видимости */
+  box-sizing: border-box; /* Чтобы padding и border не влияли на общую ширину */
+}
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: 0;
+  border-top: 1px solid #e0e0e0; /* Тонкая серая линия */
+}
+
+code {
+  /* Стили для отображения встроенного кода (например, названий свойств) */
+  background-color: #dbe6f0; /* Более заметный светло-голубой фон для inline code */
+  color: #333; /* Темный текст для контраста */
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95em; /* Чуть меньше, чтобы не выделялся слишком сильно */
+}
+pre {
+  background-color: #2d3436; /* Темный фон для блоков кода */
+  color: #dfe6e9; /* Светлый текст */
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto; /* Горизонтальная прокрутка для длинных строк кода */
+  border: 1px solid #636e72;
+}
+pre code {
+  background-color: transparent; /* Убираем фон для code внутри pre */
+  padding: 0;
+  border-radius: 0;
+}
+
+/* --- Стили для сводной таблицы Flexbox свойств --- */
+.flex-summary-table table {
+  width: 100%;
+  border-collapse: collapse; /* Убираем двойные границы между ячейками */
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Легкая тень для таблицы */
+  border-radius: 8px; /* Скругленные углы для таблицы */
+  overflow: hidden; /* Чтобы скругленные углы работали с содержимым */
+}
+
+.flex-summary-table th,
+.flex-summary-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0; /* Разделитель строк */
+}
+
+.flex-summary-table th {
+  background-color: #34495e; /* Темно-серый фон для заголовков таблицы */
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase; /* Заголовки капсом */
+  font-size: 0.9em;
+}
+
+.flex-summary-table tbody tr:nth-child(even) {
+  background-color: #f8f8f8; /* Чередующийся фон для строк */
+}
+
+.flex-summary-table tbody tr:hover {
+  background-color: #eef4f9; /* Фон при наведении на строку */
+}
+
+.flex-summary-table td:first-child {
+  font-weight: bold;
+  color: #3498db; /* Выделяем названия свойств */
+}
+
+/* --- Стили для стики-меню --- */
+.sticky-nav {
+  position: sticky; /* Делает меню "липким" */
+  top: 0; /* Прилипает к верхней части окна просмотра */
+  background-color: #2c3e50; /* Темный фон для меню */
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Небольшая тень для объема */
+  z-index: 1000; /* Гарантируем, что меню будет поверх другого контента */
+  text-align: center;
+}
+
+.sticky-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Используем flexbox для горизонтального расположения пунктов */
+  justify-content: center; /* Центрируем пункты меню */
+  flex-wrap: wrap; /* Позволяем пунктам переноситься на новую строку на маленьких экранах */
+}
+
+.sticky-nav ul li {
+  margin: 0 15px; /* Отступы между пунктами меню */
+}
+
+.sticky-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.sticky-nav ul li a:hover {
+  color: #3498db; /* Изменение цвета при наведении */
+}
+
+/* Медиа-запрос для адаптивности стики-меню */
+@media (max-width: 768px) {
+  .sticky-nav ul {
+    flex-direction: column; /* Пункты меню располагаются в колонку */
+    align-items: center; /* Центрируем пункты по горизонтали */
+  }
+  .sticky-nav ul li {
+    margin: 5px 0; /* Отступы между пунктами в вертикальном режиме */
+  }
+}
+
+/* --- Раздел 1: Основы Flexbox (Свойства контейнера) --- */
+/* Свойства, применяемые к родительскому элементу, который становится flex-контейнером */
+
+/* Пример 1: Включение Flexbox (display: flex) */
+.flex-container-1 {
+  display: flex; /* Превращает контейнер в flex-контейнер, а его прямые дочерние элементы - в flex-элементы */
+}
+
+/* Пример 2: Направление осей (flex-direction) */
+.flex-container-2-row {
+  display: flex;
+  flex-direction: row; /* Элементы в ряд, слева направо (по умолчанию для LTR языков) */
+}
+.flex-container-2-column {
+  display: flex;
+  flex-direction: column; /* Элементы в колонку, сверху вниз */
+}
+.flex-container-2-row-reverse {
+  display: flex;
+  flex-direction: row-reverse; /* Элементы в ряд, справа налево */
+}
+.flex-container-2-column-reverse {
+  display: flex;
+  flex-direction: column-reverse; /* Элементы в колонку, снизу вверх */
+}
+
+/* Пример 3: Перенос элементов (flex-wrap) */
+.flex-container-3 {
+  /* Общий класс для контейнеров в примере 3 */
+  display: flex;
+  width: 330px; /* Ограничиваем ширину контейнера, чтобы продемонстрировать перенос */
+  border: 2px dashed #95a5a6; /* Пунктирная рамка для наглядности границ */
+}
+.flex-container-3-nowrap {
+  flex-wrap: nowrap; /* Элементы не переносятся (по умолчанию), могут вылезти или сжаться */
+}
+.flex-container-3-wrap {
+  flex-wrap: wrap; /* Элементы переносятся на новую строку/колонку, если не помещаются */
+}
+.flex-container-3-wrap-reverse {
+  flex-wrap: wrap-reverse; /* Элементы переносятся, но ряды/колонки располагаются в обратном порядке */
+}
+.flex-container-3 .item {
+  /* Уменьшим элементы для этого примера */
+  padding: 10px;
+  min-width: 80px;
+}
+
+/* Пример 4: Выравнивание по главной оси (justify-content) */
+.flex-container-4 {
+  display: flex;
+  /* flex-direction: row; по умолчанию */
+}
+.jc-flex-start {
+  justify-content: flex-start;
+} /* Элементы прижаты к началу главной оси */
+.jc-flex-end {
+  justify-content: flex-end;
+} /* Элементы прижаты к концу главной оси */
+.jc-center {
+  justify-content: center;
+} /* Элементы центрированы по главной оси */
+.jc-space-between {
+  justify-content: space-between;
+} /* Перв. в начале, посл. в конце, ост. равномерно между ними */
+.jc-space-around {
+  justify-content: space-around;
+} /* Равные отступы вокруг каждого элемента (по краям половина) */
+.jc-space-evenly {
+  justify-content: space-evenly;
+} /* Абсолютно равные отступы между всеми элементами и краями */
+
+/* Пример 5: Выравнивание по поперечной оси (align-items) */
+.flex-container-5 {
+  display: flex;
+  height: 180px; /* Зададим высоту контейнеру для наглядности вертикального выравнивания */
+  /* flex-direction: row; по умолчанию */
+}
+.ai-stretch {
+  align-items: stretch;
+} /* Элементы растягиваются по всей высоте поперечной оси (если нет своей высоты) */
+.ai-flex-start {
+  align-items: flex-start;
+} /* Элементы прижаты к началу поперечной оси */
+.ai-flex-end {
+  align-items: flex-end;
+} /* Элементы прижаты к концу поперечной оси */
+.ai-center {
+  align-items: center;
+} /* Элементы центрированы по поперечной оси */
+.ai-baseline {
+  align-items: baseline;
+} /* Элементы выровнены по их базовой линии текста */
+
+.flex-container-5 .item-tall {
+  height: 100px;
+  line-height: 100px;
+  background-color: #2ecc71;
+} /* Для демонстрации baseline и других */
+.flex-container-5 .item-short {
+  height: 50px;
+  line-height: 50px;
+  background-color: #e67e22;
+} /* Для демонстрации baseline и других */
+.flex-container-5 .item-baseline-large-font {
+  font-size: 2em;
+  padding-top: 10px;
+} /* Для baseline */
+.flex-container-5 .item-baseline-small-font {
+  font-size: 0.9em;
+  padding-top: 25px;
+} /* Для baseline */
+
+/* Пример 6: Выравнивание рядов/колонок (align-content) */
+.flex-container-6 {
+  display: flex;
+  flex-wrap: wrap; /* Обязательное условие для align-content - наличие нескольких рядов/колонок */
+  height: 350px; /* Достаточная высота для распределения рядов */
+  width: 280px; /* Ширина, чтобы элементы точно перенеслись на несколько рядов */
+  border: 2px dashed #95a5a6;
+}
+.ac-flex-start {
+  align-content: flex-start;
+} /* Ряды прижаты к началу поперечной оси контейнера */
+.ac-flex-end {
+  align-content: flex-end;
+} /* Ряды прижаты к концу поперечной оси контейнера */
+.ac-center {
+  align-content: center;
+} /* Ряды центрированы по поперечной оси контейнера */
+.ac-space-between {
+  align-content: space-between;
+} /* Первый ряд в начале, последний в конце, остальные равномерно */
+.ac-space-around {
+  align-content: space-around;
+} /* Равные отступы вокруг каждого ряда */
+.ac-stretch {
+  align-content: stretch;
+} /* Ряды растягиваются, чтобы занять все доступное пространство (если у элементов нет своей высоты) */
+.flex-container-6 .item {
+  height: 60px;
+} /* Зададим высоту, чтобы stretch был нагляднее на рядах, а не элементах */
+
+/* --- Раздел 2: Свойства Flex-элементов --- */
+
+/* Пример 7: Порядок элементов (order) */
+.flex-container-7 {
+  display: flex;
+}
+/* Элементы с меньшим значением order отображаются раньше. По умолчанию order: 0. */
+.flex-container-7 .item-order-2 {
+  order: 2;
+  background-color: #e74c3c;
+} /* Красный - будет вторым (0, 1, 2) */
+.flex-container-7 .item-order-1 {
+  order: 1;
+  background-color: #f1c40f;
+} /* Желтый - будет первым */
+.flex-container-7 .item-order-3 {
+  order: 3;
+  background-color: #9b59b6;
+} /* Фиолетовый - будет третьим */
+.flex-container-7 .item-default-order {
+  background-color: #1abc9c;
+} /* Бирюзовый - order: 0 по умолчанию, будет самым первым */
+
+/* Пример 8: Коэффициент растяжения (flex-grow) */
+.flex-container-8 {
+  display: flex;
+  width: 100%; /* Занимает всю доступную ширину */
+}
+/* flex-grow определяет, какую долю доступного свободного пространства займет элемент */
+/* По умолчанию flex-grow: 0 (элемент не растягивается) */
+.flex-container-8 .grow-1 {
+  flex-grow: 1;
+  background-color: #2ecc71;
+} /* Зеленый, займет 1 часть свободного места */
+.flex-container-8 .grow-2 {
+  flex-grow: 2;
+  background-color: #e67e22;
+} /* Оранжевый, займет 2 части свободного места */
+.flex-container-8 .no-grow {
+  flex-grow: 0;
+  background-color: #95a5a6;
+} /* Серый, не будет расти */
+
+/* Пример 9: Коэффициент сжатия (flex-shrink) */
+.flex-container-9 {
+  display: flex;
+  width: 400px; /* Контейнер меньше суммы ширин элементов, чтобы было куда сжиматься */
+}
+/* flex-shrink определяет, насколько элемент будет сжиматься, если места не хватает */
+/* По умолчанию flex-shrink: 1. Чем больше значение, тем сильнее сжимается. */
+.flex-container-9 .item {
+  width: 200px; /* Начальная ширина каждого элемента */
+}
+.flex-container-9 .shrink-0 {
+  flex-shrink: 0;
+  background-color: #e74c3c;
+} /* Красный, не будет сжиматься */
+.flex-container-9 .shrink-1 {
+  flex-shrink: 1;
+  background-color: #f1c40f;
+} /* Желтый, будет сжиматься (по умолчанию) */
+.flex-container-9 .shrink-2 {
+  flex-shrink: 2;
+  background-color: #9b59b6;
+} /* Фиолетовый, будет сжиматься сильнее */
+
+/* Пример 10: Базовый размер (flex-basis) */
+.flex-container-10 {
+  display: flex;
+  width: 100%;
+}
+/* flex-basis определяет начальный размер элемента вдоль главной оси */
+/* Если установлено значение auto, размер берется из width/height или по содержимому */
+.flex-container-10 .basis-100px {
+  flex-basis: 100px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: #1abc9c;
+} /* Бирюзовый, база 100px, не растет/не сжимается */
+.flex-container-10 .basis-200px {
+  flex-basis: 200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: #2ecc71;
+} /* Зеленый, база 200px */
+.flex-container-10 .basis-auto {
+  flex-basis: auto;
+  width: 120px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: #e67e22;
+} /* Оранжевый, база по width (120px) */
+.flex-container-10 .basis-content {
+  flex-basis: auto; /* или content */
+  flex-grow: 1;
+  background-color: #e74c3c;
+} /* Красный, база по содержимому, но может расти */
+
+/* Пример 11: Выравнивание отдельного элемента (align-self) */
+.flex-container-11 {
+  display: flex;
+  height: 200px;
+  align-items: flex-start; /* Общее выравнивание для контейнера - к началу поперечной оси */
+  border: 2px dashed #95a5a6;
+}
+/* align-self позволяет переопределить align-items для отдельного элемента */
+.flex-container-11 .self-auto {
+  align-self: auto;
+  background-color: #f1c40f;
+} /* Желтый, наследует align-items (flex-start) */
+.flex-container-11 .self-flex-start {
+  align-self: flex-start;
+} /* Бирюзовый, к началу (как у родителя) */
+.flex-container-11 .self-flex-end {
+  align-self: flex-end;
+} /* Красный, к концу поперечной оси */
+.flex-container-11 .self-center {
+  align-self: center;
+} /* Фиолетовый, по центру поперечной оси */
+.flex-container-11 .self-stretch {
+  align-self: stretch;
+  height: auto;
+} /* Зеленый, растянется (если нет своей высоты) */
+.flex-container-11 .self-baseline {
+  align-self: baseline;
+  font-size: 1.5em;
+  padding-top: 5px;
+} /* Оранжевый, по базовой линии */
+
+/* --- Раздел 3: Адаптивный дизайн с Медиа-запросами --- */
+
+/* Пример 12: Простой адаптивный макет (Сайдбар и Контент) */
+.adaptive-layout {
+  display: flex;
+  flex-wrap: wrap; /* Позволяем элементам переноситься, если необходимо */
+  gap: 15px; /* Пространство между flex-элементами (современное свойство) */
+}
+.adaptive-layout .sidebar {
+  background-color: #95a5a6; /* Серый сайдбар */
+  color: white;
+  padding: 20px;
+  border-radius: 4px;
+  /* Изначально сайдбар занимает 1 часть, а контент 3 части */
+  flex: 1 1 250px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 250px */
+  order: 1; /* Сайдбар первый по умолчанию на больших экранах */
+  min-height: 150px; /* Минимальная высота для наглядности */
+}
+.adaptive-layout .main-content {
+  background-color: #7f8c8d; /* Темно-серый контент */
+  color: white;
+  padding: 20px;
+  border-radius: 4px;
+  flex: 3 1 0; /* flex-grow: 3, flex-shrink: 1, flex-basis: 0 (чтобы он рос от нуля) */
+  order: 2; /* Контент второй по умолчанию */
+  min-height: 150px;
+}
+
+/* Медиа-запрос для экранов <= 768px (типичный планшет в портретной ориентации и телефоны) */
+@media (max-width: 768px) {
+  .adaptive-layout {
+    flex-direction: column; /* Элементы располагаются в колонку */
+  }
+  /* Сайдбар и контент занимают всю ширину и их базовая ширина сбрасывается */
+  .adaptive-layout .sidebar,
+  .adaptive-layout .main-content {
+    flex-basis: auto; /* Сбрасываем flex-basis */
+    width: 100%; /* Занимают всю ширину родителя */
+    /* flex: 1; можно и так, чтобы они делили место если их несколько в колонке, но здесь они 100% */
+  }
+  .adaptive-layout .main-content {
+    order: 1; /* Основной контент становится первым на маленьких экранах */
+  }
+  .adaptive-layout .sidebar {
+    order: 2; /* Сайдбар становится вторым */
+  }
+  .item {
+    /* Можно также адаптировать общие элементы */
+    font-size: 1em; /* Уменьшаем шрифт общих .item на маленьких экранах */
+  }
+}
+
+/* Пример 13: Адаптивная навигация */
+.adaptive-nav-container {
+  background-color: #2c3e50; /* Темно-синий фон для навигации */
+  padding: 0; /* Уберем padding контейнера, чтобы nav растянулся */
+  border-radius: 6px;
+  overflow: hidden; /* Чтобы скругленные углы работали с nav */
+}
+.adaptive-nav ul {
+  display: flex; /* Располагаем пункты меню в ряд */
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0;
+  margin: 0;
+  /* justify-content: space-around; Распределяем пункты равномерно, но лучше flex-grow для элементов */
+}
+.adaptive-nav ul li {
+  flex-grow: 1; /* Каждый пункт меню будет стараться занять равное пространство */
+}
+.adaptive-nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block; /* Чтобы ссылка занимала всю высоту и ширину li */
+  text-align: center;
+  border-left: 1px solid #34495e; /* Разделитель между пунктами */
+  transition: background-color 0.3s ease; /* Плавный переход для hover */
+}
+.adaptive-nav ul li:first-child a {
+  border-left: none; /* Убираем левый бордер у первого элемента */
+}
+.adaptive-nav ul li a:hover {
+  background-color: #3498db; /* Синий фон при наведении */
+}
+.adaptive-nav ul li a:active {
+  /* При клике */
+  background-color: #2980b9;
+}
+
+/* Медиа-запрос для экранов <= 600px (типичный телефон) */
+@media (max-width: 600px) {
+  .adaptive-nav ul {
+    flex-direction: column; /* Пункты меню располагаются в колонку */
+  }
+  .adaptive-nav ul li {
+    width: 100%; /* Каждый пункт на всю ширину */
+  }
+  .adaptive-nav ul li a {
+    border-left: none; /* Убираем боковые разделители */
+    border-bottom: 1px solid #34495e; /* Добавляем нижний разделитель */
+  }
+  .adaptive-nav ul li:last-child a {
+    border-bottom: none; /* Убираем нижний бордер у последнего элемента */
+  }
+}
