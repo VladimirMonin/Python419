@@ -1,4 +1,5 @@
 // Lesson 13. Циклы в JS
+import { testVar } from './test.js';
 // Классический вариант цикла for (с ES6+)
 let message = "Изучаем цикл FOR!";
 // for of перебирает элементы
@@ -287,3 +288,28 @@ console.log(sayMyNames(...namesArr)) // ... - spread оператор - разв
 // 5. `values()` - итератор значений
 // 6. `reduceRight()` - reduce справа налево
 // 7. `lastIndexOf()` - поиск с конца массива
+
+
+// SyntaxError: The requested module ... doesn't provide an export named 'greetByName'\
+// В practice.js выполняется импорт:
+
+// ```js
+// import { greetByName } from './lesson_13.js';
+// ```
+
+// но в lesson_13.js функция `greetByName` объявлена, __но не экспортирована__.\
+// Модуль может отдавать наружу только то, что явно помечено как `export`.
+
+// Возможные варианты исправления в lesson_13.js:
+
+// ```js
+// // сразу при объявлении
+// export function greetByName(greet = "Привет", name) {
+//   return `${greet}, ${name}!`;
+// }
+
+// // либо в конце файла
+// // function greetByName(...) { ... }
+// // ...
+export { greetByName };
+// ```
