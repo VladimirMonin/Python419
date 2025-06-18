@@ -113,9 +113,23 @@ let palindromesArray = [
   "велосипед",
 ];
 
-palindromesArray[-1] = "дед";
-console.log(`Тест: ${palindromesArray[-1]}`);
-console.log(palindromesArray);
+// ЭТО НЕ ПРАВИЛЬНО. Отрицательные индексы так не будут работать в JS
+// palindromesArray[-1] = "дед";
+// console.log(`Тест: ${palindromesArray[-1]}`);
+// console.log(palindromesArray);
+
+// классический способ
+// const last = palindromesArray[palindromesArray.length - 1];
+
+// современный, с ES2022
+// const last = palindromesArray.at(-1);
+
+// С помощью современного способа поменяю последний элемент массива
+
+// Тоже не рабочий варинат. at - геттер. Не даст ссылку на элемент коллекции а просто вернет значение
+// palindromesArray.at(-1) = "репа";
+// console.log(palindromesArray);
+palindromesArray[palindromesArray.length - 1] = "репа";
 
 // Прогоним forEach с нашей функцией №2
 palindromesArray.forEach(isPalindrome2); // тут будет ничего не видно - мы не выводим данные в консоль
