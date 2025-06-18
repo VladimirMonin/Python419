@@ -197,6 +197,40 @@ console.log(isSomePalindromes);
 
 // Пробуем spliece на нашем массиве
 // С одним стартовым индексом. Тут мы удаляем все элементы после стартового индекса.
-let newArr = palindromesArray.splice(1);
-console.log(newArr);
+// let newArr = palindromesArray.splice(1);
+// console.log(newArr);
+// console.log(palindromesArray);
+
+
+//PRACTICE - Попробуйте cplise в своем стиле
+// 3. Через splice (одновременно можно вернуть старое значение)
+const old = palindromesArray.splice(-1, 1, "внучка");
+console.log(old);
 console.log(palindromesArray);
+
+
+///////////////////////// ОБЪЕКТЫ //
+// Объекты - это набор свойств, каждое свойство состоит из пары ключ-значение.
+// Создание объекта
+const age = 22
+const person = {
+    firstName: "Фродо",
+    lastName: "Бэггинс",
+    age: 25,
+    hobbies: ["ходить", "подбирать плохо лежащие золотые кольца", "убегать от орков"],
+    isMarried: false,
+    getInfo: function() {
+        return `${this.firstName} ${this.lastName} ${this.age} ${this.hobbies} ${this.isMarried}`;
+    }
+}
+// age = 23 упадем. Простые переменные нельзя переопределять
+console.log(age);
+console.log(person);
+console.log(person.firstName);
+
+person.firstName = "Бильбо";
+person.middleName = "Хоббитович" // Однако без проблем новый ключ можно добавить
+console.log(person.firstName);
+console.log(person.middleName);
+
+// person = "Тут был Бильбо"; // А вот это уже не прокатит
