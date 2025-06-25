@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Урок 17</title>
+    <style>
+      .shadow {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+      .card {
+        width: 100px;
+        height: 200px;
+        background-color: #fff;
+        border: 1px solid #000;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      }
+
+      /* .container-column {
+        flex-direction: column;
+      } */
+    </style>
+  </head>
+  <body discoState="off">
+    <!-- Комментарий! -->
+    <h1>Урок 17 - DOM</h1>
+    <div class="container">
+      <div class="card">Карточка №1</div>
+      <div class="card">Карточка №2</div>
+      <div class="card">Карточка №3</div>
+      <div class="card">Карточка №4</div>
+      <div class="card">Карточка №5</div>
+    </div>
+    <button onclick="alert('Алерт!!!!')">Алерт! Ахтунг!!!</button>
+    <button id="buttonOne" onclick="changeBGColor()">Изменить цвет фона</button>
+    <button id="buttonTwo" onclick="discoStart()">Дискотека!</button>
+    <button id="buttonThree" onclick="changeFlexDirection()">Колонка \ Строка</button>
+    <button id="buttonFour" onclick="containerDirectionToggle()">Колонка \ Строка 2</button>
+    <button id="buttonFive" onclick="containerDisplayToggle()">Скрыть \ показать</button>
+    <button id="buttonSix" onclick="createCard()">Создать карточку</button>
+    <button id="buttonSeven" onclick="createCardUserText()">Создать карточку c текстом</button>
+    <script src="lesson_17.js"></script>
+  </body>
+</html>
