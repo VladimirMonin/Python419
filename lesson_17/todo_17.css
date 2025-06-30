@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.to-do-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.done-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#createTask {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+}
+
+#createTask:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
