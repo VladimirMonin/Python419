@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 18 - события</title>
+    <style>
+      .circle {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      #dropArea {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        background-color: rgb(223, 247, 231);
+        transition: background-color 0.3s, border-style 0.3s; /* Плавный переход */
+      }
+      /* Единственное правило для состояния dragover */
+      #dropArea.dragover {
+        background-color: rgb(241, 207, 207); /* Красный фон */
+        border: 4px dashed black; /* Пунктирная рамка */
+        border-radius: 10px; /* Скругленные углы */
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <button onclick="alert('Hello World!'); console.log('Hello World!');">
+        inline JS
+      </button>
+      <button id="btn1">JS</button>
+      <p>lorem:5</p>
+      <p>lorem:5</p>
+      <p>lorem:5</p>
+      <div id="dropArea"></div>
+    </main>
+    <script src="./lesson_18.js"></script>
+  </body>
+</html>
