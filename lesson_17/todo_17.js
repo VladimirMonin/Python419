@@ -6,12 +6,13 @@ const createTask = document.getElementById("createTask");
 const toDoContainer = document.querySelector(".todo-container");
 const doneContainer = document.querySelector(".done-container");
 const inputSearchTask = document.getElementById("taskName");
+const form = document.querySelector("form");
 
 // 1. Функция через промпт спрашивает у пользователя какую задачу он хочет добавить в список дел.
-function askUser() {
-  const taskText = prompt("Какую задачу вы хотите добавить в список дел?");
-  return taskText;
-}
+// function askUser() {
+//   const taskText = prompt("Какую задачу вы хотите добавить в список дел?");
+//   return taskText;
+// }
 
 // 7. Функция которая создает кнопку и вешает логику удаления карточки
 function createDeleteButton(taskCard) {
@@ -41,15 +42,42 @@ function createEditButton(taskTextDiv) {
 }
 
 // 9. Функция создает кнопку завершить задачу и вешает логику перемещения карточки в <div class="done-container"></div>
-function createDoneButton(taskCard) {
-  const doneButton = document.createElement("button");
-  doneButton.textContent = "✅";
-  doneButton.addEventListener("click", () => {
-    const doneContainer = document.querySelector(".done-container");
-    doneContainer.appendChild(taskCard);
-    console.log(`Карточка перемещена в выполненные`);
+// 9. Функция создает кнопку завершить/вернуть задачу
+function createToggleButton(taskCard) {
+  const toggleButton = document.createElement("button");
+
+  // Проверяем, в каком контейнере находится задача
+  const isInDoneContainer = taskCard.closest(".done-container");
+
+  if (isInDoneContainer) {
+    // Если задача в выполненных - показываем кнопку возврата
+    toggleButton.textContent = "↩️";
+    toggleButton.title = "Вернуть в активные";
+  } else {
+    // Если задача активная - показываем кнопку выполнения
+    toggleButton.textContent = "✅";
+    toggleButton.title = "Отметить как выполненную";
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const currentContainer = taskCard.parentElement;
+
+    if (currentContainer.classList.contains("done-container")) {
+      // Возвращаем из выполненных в активные
+      toDoContainer.appendChild(taskCard);
+      toggleButton.textContent = "✅";
+      toggleButton.title = "Отметить как выполненную";
+      console.log(`Задача возвращена в активные`);
+    } else {
+      // Перемещаем в выполненные
+      doneContainer.appendChild(taskCard);
+      toggleButton.textContent = "↩️";
+      toggleButton.title = "Вернуть в активные";
+      console.log(`Задача отмечена как выполненная`);
+    }
   });
-  return doneButton;
+
+  return toggleButton;
 }
 
 // 2. Функция создает карточку задачи
@@ -73,7 +101,7 @@ function createTaskCard(taskText) {
   const editButton = createEditButton(taskTextDiv);
   taskButtonsDiv.appendChild(editButton);
   //    Создаем кнопку выполнения и добавляем её в карточку
-  const doneButton = createDoneButton(taskCard);
+  const doneButton = createToggleButton(taskCard);
   taskButtonsDiv.appendChild(doneButton);
 
   // Добавляем контейнер текста и контейнер кнопок
@@ -88,18 +116,20 @@ function addTaskToList(container, taskCard) {
 }
 
 // 4. Главная функция создания задачи
-function createTaskItem() {
-  const taskText = askUser();
-  const taskCard = createTaskCard(taskText);
-  addTaskToList(toDoContainer, taskCard);
-}
+// function createTaskItem() {
+//   const taskText = askUser();
+//   const taskCard = createTaskCard(taskText);
+//   addTaskToList(toDoContainer, taskCard);
+// }
 
 // 5. Обработчик события для кнопки "Создать задачу"
-createTask.addEventListener("click", createTaskItem);
+createTask.addEventListener("click", createTaskItemFromInput);
 
 // 10. Листнер на поле ввода
+inputSearchTask.addEventListener("input", toggleTaskCardsVisibility);
 
-inputSearchTask.addEventListener("input", function () {
+// 13. Выношу логику обхода карточек в отдельную функцию - потому что она будет использоваться в 10. и в 12
+function toggleTaskCardsVisibility() {
   // Получаем значение из поля ввода
   const searchText = inputSearchTask.value.toLowerCase();
 
@@ -116,4 +146,26 @@ inputSearchTask.addEventListener("input", function () {
       taskCard.style.display = "flex";
     }
   });
+}
+
+// 11 функция извлекающая текст из поля ввода inputSearchTask и создающая карточку
+function createTaskItemFromInput() {
+  const taskText = inputSearchTask.value;
+  //   Уточняем, хочет ли пользователь создать задачу
+  const confirmCreation = confirm(
+    `Вы уверены, что хотите создать задачу "${taskText}"?`
+  );
+  if (!confirmCreation) {
+    return; // Если пользователь отменил создание, выходим из функции
+  }
+  const taskCard = createTaskCard(taskText);
+  addTaskToList(toDoContainer, taskCard);
+  inputSearchTask.value = "";
+}
+
+// 12. Блокирование отправки формы и запуск создания задачи
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+  createTaskItemFromInput();
+  toggleTaskCardsVisibility();
 });
