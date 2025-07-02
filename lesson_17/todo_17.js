@@ -5,6 +5,7 @@
 const createTask = document.getElementById("createTask");
 const toDoContainer = document.querySelector(".todo-container");
 const doneContainer = document.querySelector(".done-container");
+const inputSearchTask = document.getElementById("taskName");
 
 // 1. Функция через промпт спрашивает у пользователя какую задачу он хочет добавить в список дел.
 function askUser() {
@@ -95,3 +96,24 @@ function createTaskItem() {
 
 // 5. Обработчик события для кнопки "Создать задачу"
 createTask.addEventListener("click", createTaskItem);
+
+// 10. Листнер на поле ввода
+
+inputSearchTask.addEventListener("input", function () {
+  // Получаем значение из поля ввода
+  const searchText = inputSearchTask.value.toLowerCase();
+
+  // Получаем все карточки задач
+  const taskCards = document.querySelectorAll(".task");
+  // Проходим по всем карточкам и скрываем те, которые не соответствуют поиску
+  taskCards.forEach((taskCard) => {
+    const taskText = taskCard
+      .querySelector(".task-text")
+      .textContent.toLowerCase();
+    if (!taskText.includes(searchText)) {
+      taskCard.style.display = "none";
+    } else {
+      taskCard.style.display = "flex";
+    }
+  });
+});
