@@ -3,6 +3,7 @@ const API_KEY2 = "578660fff873f606fa1c43e56d64ba6c";
 
 const metric = "metric";
 const lang = "ru";
+const FORECAST_STEP = 4; // Шаг для отображения прогноза (8 * 3 часа = 24 часа)
 
 const inputWeather = document.getElementById("inputWeather");
 const btnWeather = document.getElementById("btnWeather");
@@ -16,6 +17,7 @@ const cardCityName = document.getElementById("cardCityName");
 const cardTemp = document.getElementById("cardTemp");
 const cardTempFeels = document.getElementById("cardTempFeels");
 const cardWind = document.getElementById("cardWind");
+const currentWeatherIcon = document.getElementById("currentWeatherIcon");
 const airPollutionCard = document.getElementById("airPollutionCard");
 const airQuality = document.getElementById("airQuality");
 const weather5DaysContainer = document.getElementById("weather5DaysContainer");
@@ -182,15 +184,18 @@ function renderWeatherCard(weatherData) {
     return;
   }
 
-  let temp = weatherData.main.temp;
-  let feels = weatherData.main.feels_like;
-  let city = weatherData.name;
-  let wind = weatherData.wind.speed;
+  const {
+    main: { temp, feels_like: feels },
+    name: city,
+    wind: { speed: wind },
+    weather: [{ icon }],
+  } = weatherData;
 
   cardCityName.innerHTML = city;
-  cardTemp.innerHTML = temp;
-  cardTempFeels.innerHTML = feels;
-  cardWind.innerHTML = wind;
+  cardTemp.innerHTML = `Температура: ${temp.toFixed(1)}°C`;
+  cardTempFeels.innerHTML = `Ощущается как: ${feels.toFixed(1)}°C`;
+  cardWind.innerHTML = `Скорость ветра: ${wind} м/с`;
+  currentWeatherIcon.src = `http://openweathermap.org/img/wn/${icon}@4x.png`;
   // Воспользоваться функцией toggleElement
   toggleElement(true, card);
 }
@@ -235,36 +240,30 @@ function renderWeather5DaysCard(weather5DaysData) {
 
   weather5DaysContainer.innerHTML = ""; // Очищаем контейнер
 
-  const dailyData = {};
-
-  // Группируем данные по дням
-  weather5DaysData.list.forEach((item) => {
-    const date = new Date(item.dt * 1000).toLocaleDateString("ru-RU", {
+  for (let i = 0; i < weather5DaysData.list.length; i += FORECAST_STEP) {
+    const forecast = weather5DaysData.list[i];
+    const date = new Date(forecast.dt * 1000);
+    const dateString = date.toLocaleDateString("ru-RU", {
       day: "numeric",
       month: "long",
     });
-    if (!dailyData[date]) {
-      dailyData[date] = [];
-    }
-    dailyData[date].push(item);
-  });
+    const timeString = date.toLocaleTimeString("ru-RU", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
-  // Создаем карточки для каждого дня
-  for (const date in dailyData) {
-    const dayWeather = dailyData[date];
-    const avgTemp =
-      dayWeather.reduce((sum, item) => sum + item.main.temp, 0) /
-      dayWeather.length;
-    const weatherDescription = dayWeather[0].weather[0].description;
-    const weatherIcon = dayWeather[0].weather[0].icon;
+    const temp = forecast.main.temp;
+    const weatherDescription = forecast.weather[0].description;
+    const weatherIcon = forecast.weather[0].icon;
 
     const cardHtml = `
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">${date}</h5>
-            <img src="http://openweathermap.org/img/wn/${weatherIcon}@4x.png" alt="${weatherDescription}">
-            <p class="card-text">Средняя температура: ${avgTemp.toFixed(1)}°C</p>
+            <h5 class="card-title">${dateString}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${timeString}</h6>
+            <img src="http://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="${weatherDescription}">
+            <p class="card-text">Температура: ${temp.toFixed(1)}°C</p>
             <p class="card-text">${weatherDescription}</p>
           </div>
         </div>

@@ -38,27 +38,33 @@
 
       <div id="weatherResult"></div>
     </form>
-    <div class="card" style="width: 18rem" id="card">
-      <div class="card-header" id="cardCityName"></div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" id="cardTemp"></li>
-        <li class="list-group-item" id="cardTempFeels"></li>
-        <li class="list-group-item" id="cardWind"></li>
-      </ul>
-    </div>
 
-    <!-- Карточка для качества воздуха -->
-    <div class="card mt-3" style="width: 18rem; display: none" id="airPollutionCard">
-      <div class="card-header">Качество воздуха</div>
-      <div class="card-body">
-        <p class="card-text" id="airQuality"></p>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+      <div class="card" style="width: 22rem" id="card">
+        <div class="card-header fs-4 text-center" id="cardCityName"></div>
+        <div class="card-body d-flex align-items-center">
+          <img id="currentWeatherIcon" src="" alt="Иконка погоды" class="me-3" style="width: 128px; height: 128px;" />
+          <ul class="list-group list-group-flush w-100">
+            <li class="list-group-item" id="cardTemp"></li>
+            <li class="list-group-item" id="cardTempFeels"></li>
+            <li class="list-group-item" id="cardWind"></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Карточка для качества воздуха -->
+      <div class="card" style="width: 22rem; display: none" id="airPollutionCard">
+        <div class="card-header fs-4 text-center">Качество воздуха</div>
+        <div class="card-body d-flex align-items-center justify-content-center">
+          <p class="card-text fs-3" id="airQuality"></p>
+        </div>
       </div>
     </div>
 
     <!-- Прогноз на 5 дней -->
     <div id="weather5Days" class="mt-3">
-      <h3>Прогноз на 5 дней</h3>
-      <div id="weather5DaysContainer" class="row"></div>
+      <h3>Прогноз на 5 дней (время местное)</h3>
+      <div id="weather5DaysContainer" class="row row-cols-1 row-cols-md-5 g-4"></div>
     </div>
 
     <script src="lesson_20_1.js"></script>
