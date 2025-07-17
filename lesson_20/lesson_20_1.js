@@ -21,7 +21,7 @@ async function getResponseWithRetries(url, retries = 3, baseDelay = 1000) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     // Блок Try - Catch
     try {
-      console.log(`Запрос №${attempt} к ${url}`);
+      //   console.log(`Запрос №${attempt} к ${url}`);
       // Отправляем запрос и получаем ответ
       const response = await fetch(url);
       // Проверяем статус ответа
@@ -48,10 +48,72 @@ async function getResponseWithRetries(url, retries = 3, baseDelay = 1000) {
   }
 }
 
+// Функция добывающая данные геокодирования используя getResponseWithRetries на вход берет название города
+async function getGeocoding(city) {
+  try {
+    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
+    console.log("Отправляется запрос на геокодирование");
+    const response = await getResponseWithRetries(url);
+    //  Формируем объект с ключами lat и lon
+    const result = {
+      lat: response[0].lat,
+      lon: response[0].lon,
+    };
+    console.log(`Получены координаты: ${result.lat}, ${result.lon}`);
+    return result;
+  } catch (error) {
+    console.error("Произошла ошибка при получении данных:", error);
+    throw error;
+  }
+}
+// Функция для получения данных о погоде
+async function getWeather(lat, lon) {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${metric}&lang=${lang}`;
+    console.log("Отправляется запрос на текущую погоду");
+    const response = await getResponseWithRetries(url);
+    console.log("Получены данные о погоде");
+    return response;
+  } catch (error) {
+    console.error(
+      `Ошибка при получении текущий данных о погоде: ${error.message}`
+    );
+    throw error;
+  }
+}
 
+// Функция для получения данных о выбросах в воздухе
+async function getAirPollution(lat, lon) {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    console.log("Отправляется запрос на данные о выбросах в воздухе");
+    const response = await getResponseWithRetries(url);
+    const result = response.list[0].main.aqi;
+    console.log(`Получены данные о выбросах в воздухе: ${result}`);
+    return result;
+  } catch (error) {
+    console.error(
+      `Ошибка при получении данных о выбросах в воздухе: ${error.message}`
+    );
+    throw error;
+  }
+}
 
-
-
+// Функция для получения погоды на 5 дней
+async function getWeather5Days(lat, lon) {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${metric}&lang=${lang}`;
+    console.log("Отправляется запрос на погоду на 5 дней");
+    const response = await getResponseWithRetries(url);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(
+      `Ошибка при получении данных о погоде на 5 дней: ${error.message}`
+    );
+    throw error;
+  }
+}
 
 // Функция для отображения и сокрытия спиннера. Принемает true или false
 function toggleElement(show, element) {
@@ -62,24 +124,35 @@ async function displayWeatherOnClick() {
   //   Запуск спиннера
   toggleElement(true, spinner);
   const city = inputWeather.value;
-  //   Формируем URL для запроса
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${metric}&lang=${lang}`;
 
-  //  Отправляем запрос через Try Catch - если ошибка - 3 попытки провалились
+  //   Получаем данные геокодирования для города
   try {
-    const weather = await getResponseWithRetries(url);
-    // Обработка успешного ответа - рендер
-    renderWeatherCard(weather);
+    const geocodingData = await getGeocoding(city);
+    // Получаем данные о погоде
+    const weatherData = await getWeather(geocodingData.lat, geocodingData.lon);
+    // Получаем данные о выбросах в воздухе
+    const airPollutionData = await getAirPollution(
+      geocodingData.lat,
+      geocodingData.lon
+    );
+    // Получаем данные о погоде на 5 дней
+    const weather5DaysData = await getWeather5Days(
+      geocodingData.lat,
+      geocodingData.lon
+    );
+    // Отображаем данные о погоде
+    renderWeatherCard(weatherData);
+    // Отображаем данные о выбросах в воздухе
+    // renderAirPollutionCard(airPollutionData);
+    // Отображаем данные о погоде на 5 дней
+    // renderWeather5DaysCard(weather5DaysData);
   } catch (error) {
-    console.error("Произошла ошибка при получении данных:", error);
-    // Запускаю рендер без данных
-    renderWeatherCard(null);
+    console.error("Произошла ошибка:", error);
   } finally {
-    //   Завершение спиннера - выключаем через finally
+    // Остановливаем спиннер
     toggleElement(false, spinner);
   }
 }
-
 // Отдельная функция рендера карточки с погодой. Если нет данных - показываем сообщение об ошибке
 function renderWeatherCard(weatherData) {
   if (!weatherData) {
