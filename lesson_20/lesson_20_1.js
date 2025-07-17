@@ -9,6 +9,12 @@ const btnWeather = document.getElementById("btnWeather");
 const weatherResult = document.getElementById("weatherResult");
 const weatherForm = document.getElementById("weatherForm");
 const spinner = document.getElementById("loadingSpinner");
+const ssLastCityKey = "lastCity";
+const lastCity = localStorage.getItem(ssLastCityKey);
+const card = document.getElementById("card");
+const cardCityName = document.getElementById("cardCityName");
+const cardTemp = document.getElementById("cardTemp");
+const cardTempFeels = document.getElementById("cardTempFeels");
 
 async function getResponseWithRetries(url, retries = 3, baseDelay = 1000) {
   // Создаем цикл с повторами
@@ -42,14 +48,19 @@ async function getResponseWithRetries(url, retries = 3, baseDelay = 1000) {
   }
 }
 
+
+
+
+
+
 // Функция для отображения и сокрытия спиннера. Принемает true или false
-function toggleSpinner(show) {
-  spinner.style.display = show ? "inline-block" : "none";
+function toggleElement(show, element) {
+  element.style.display = show ? "inline-block" : "none";
 }
 
 async function displayWeatherOnClick() {
   //   Запуск спиннера
-  toggleSpinner(true);
+  toggleElement(true, spinner);
   const city = inputWeather.value;
   //   Формируем URL для запроса
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${metric}&lang=${lang}`;
@@ -57,23 +68,59 @@ async function displayWeatherOnClick() {
   //  Отправляем запрос через Try Catch - если ошибка - 3 попытки провалились
   try {
     const weather = await getResponseWithRetries(url);
-    // Обработка успешного ответа
-    console.log("Успешный ответ:", weather);
-    const tempt = weather.main.temp;
-    const wind = weather.wind.speed;
-    const weatherString = `Температура: ${tempt}°C, Скорость ветра: ${wind} м/с`;
-    weatherResult.innerHTML = weatherString;
+    // Обработка успешного ответа - рендер
+    renderWeatherCard(weather);
   } catch (error) {
     console.error("Произошла ошибка при получении данных:", error);
-    weatherResult.innerHTML = "Не удалось получить данные о погоде.";
+    // Запускаю рендер без данных
+    renderWeatherCard(null);
   } finally {
     //   Завершение спиннера - выключаем через finally
-    toggleSpinner(false);
+    toggleElement(false, spinner);
   }
+}
+
+// Отдельная функция рендера карточки с погодой. Если нет данных - показываем сообщение об ошибке
+function renderWeatherCard(weatherData) {
+  if (!weatherData) {
+    cardCityName.innerHTML = "Не удалось получить данные о погоде.";
+    cardTemp.innerHTML = "-";
+    cardTempFeels.innerHTML = "-";
+    cardWind.innerHTML = "-";
+    return;
+  }
+
+  let temp = weatherData.main.temp;
+  let feels = weatherData.main.feels_like;
+  let city = weatherData.name;
+  let wind = weatherData.wind.speed;
+
+  cardCityName.innerHTML = city;
+  cardTemp.innerHTML = temp;
+  cardTempFeels.innerHTML = feels;
+  cardWind.innerHTML = wind;
+  // Воспользоваться функцией toggleElement
+  toggleElement(true, card);
 }
 
 // Вешаем обработчик отправка формы и блокируем стандартное поведение + делаем запрос погоды
 weatherForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  //   Впишем в localStorage последний введенный город
+  localStorage.setItem(ssLastCityKey, inputWeather.value);
   displayWeatherOnClick();
 });
+
+// Загружаем последний город из localStorage по загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+  if (lastCity) {
+    inputWeather.value = lastCity;
+    displayWeatherOnClick();
+  }
+});
+
+// LocalStorage - долгое хранение данных в браузере
+// localStorage.setItem("key", "value");
+// localStorage.getItem("key");
+// localStorage.removeItem("key");
+// localStorage.clear();

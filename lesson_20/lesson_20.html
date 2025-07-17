@@ -11,7 +11,11 @@
       crossorigin="anonymous"
     />
     <style>
-        #loadingSpinner {
+      #loadingSpinner {
+        display: none;
+      }
+
+      #card {
         display: none;
       }
     </style>
@@ -34,6 +38,14 @@
 
       <div id="weatherResult"></div>
     </form>
+    <div class="card" style="width: 18rem" id="card">
+      <div class="card-header" id="cardCityName"></div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" id="cardTemp"></li>
+        <li class="list-group-item" id="cardTempFeels"></li>
+        <li class="list-group-item" id="cardWind"></li>
+      </ul>
+    </div>
     <script src="lesson_20_1.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
