@@ -124,35 +124,50 @@ async function displayWeatherOnClick() {
   //   Запуск спиннера
   toggleElement(true, spinner);
   const city = inputWeather.value;
+  let geocodingData;
 
   //   Получаем данные геокодирования для города
   try {
-    const geocodingData = await getGeocoding(city);
-    // Получаем данные о погоде
-    const weatherData = await getWeather(geocodingData.lat, geocodingData.lon);
-    // Получаем данные о выбросах в воздухе
-    const airPollutionData = await getAirPollution(
-      geocodingData.lat,
-      geocodingData.lon
-    );
-    // Получаем данные о погоде на 5 дней
-    const weather5DaysData = await getWeather5Days(
-      geocodingData.lat,
-      geocodingData.lon
-    );
-    // Отображаем данные о погоде
-    renderWeatherCard(weatherData);
-    // Отображаем данные о выбросах в воздухе
-    // renderAirPollutionCard(airPollutionData);
-    // Отображаем данные о погоде на 5 дней
-    // renderWeather5DaysCard(weather5DaysData);
+    geocodingData = await getGeocoding(city);
   } catch (error) {
-    console.error("Произошла ошибка:", error);
+    console.error(
+      `Ошибка при получении данных геокодирования: ${error.message}`
+    );
+  }
+
+  // Сделать общий запрос Promise.all
+
+  let weatherData;
+  let airPollutionData;
+  let weather5DaysData;
+
+  try {
+    let allWeatherData = await Promise.all([
+      getWeather(geocodingData.lat, geocodingData.lon),
+      getAirPollution(geocodingData.lat, geocodingData.lon),
+      getWeather5Days(geocodingData.lat, geocodingData.lon),
+    ]);
+
+    weatherData = allWeatherData[0];
+    airPollutionData = allWeatherData[1];
+    weather5DaysData = allWeatherData[2];
+  } catch (error) {
+    console.error(
+      `Ошибка при Promise.all получении данных о погоде: ${error.message}`
+    );
   } finally {
     // Остановливаем спиннер
     toggleElement(false, spinner);
   }
+
+  // Отображаем данные о погоде
+  renderWeatherCard(weatherData);
+  // Отображаем данные о выбросах в воздухе
+  // renderAirPollutionCard(airPollutionData);
+  // Отображаем данные о погоде на 5 дней
+  // renderWeather5DaysCard(weather5DaysData);
 }
+
 // Отдельная функция рендера карточки с погодой. Если нет данных - показываем сообщение об ошибке
 function renderWeatherCard(weatherData) {
   if (!weatherData) {
