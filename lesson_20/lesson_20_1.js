@@ -15,6 +15,10 @@ const card = document.getElementById("card");
 const cardCityName = document.getElementById("cardCityName");
 const cardTemp = document.getElementById("cardTemp");
 const cardTempFeels = document.getElementById("cardTempFeels");
+const cardWind = document.getElementById("cardWind");
+const airPollutionCard = document.getElementById("airPollutionCard");
+const airQuality = document.getElementById("airQuality");
+const weather5DaysContainer = document.getElementById("weather5DaysContainer");
 
 async function getResponseWithRetries(url, retries = 3, baseDelay = 1000) {
   // Создаем цикл с повторами
@@ -163,9 +167,9 @@ async function displayWeatherOnClick() {
   // Отображаем данные о погоде
   renderWeatherCard(weatherData);
   // Отображаем данные о выбросах в воздухе
-  // renderAirPollutionCard(airPollutionData);
+  renderAirPollutionCard(airPollutionData);
   // Отображаем данные о погоде на 5 дней
-  // renderWeather5DaysCard(weather5DaysData);
+  renderWeather5DaysCard(weather5DaysData);
 }
 
 // Отдельная функция рендера карточки с погодой. Если нет данных - показываем сообщение об ошибке
@@ -192,6 +196,84 @@ function renderWeatherCard(weatherData) {
 }
 
 // Вешаем обработчик отправка формы и блокируем стандартное поведение + делаем запрос погоды
+function renderAirPollutionCard(airPollutionData) {
+  if (!airPollutionData) {
+    airQuality.innerHTML = "Не удалось получить данные о качестве воздуха.";
+    return;
+  }
+  const qualityIndex = airPollutionData;
+  let qualityText = "";
+  switch (qualityIndex) {
+    case 1:
+      qualityText = "Хорошее";
+      break;
+    case 2:
+      qualityText = "Удовлетворительное";
+      break;
+    case 3:
+      qualityText = "Умеренное";
+      break;
+    case 4:
+      qualityText = "Плохое";
+      break;
+    case 5:
+      qualityText = "Очень плохое";
+      break;
+    default:
+      qualityText = "Нет данных";
+  }
+  airQuality.innerHTML = `Индекс качества воздуха: ${qualityIndex} (${qualityText})`;
+  toggleElement(true, airPollutionCard);
+}
+
+function renderWeather5DaysCard(weather5DaysData) {
+  if (!weather5DaysData) {
+    weather5DaysContainer.innerHTML =
+      "Не удалось получить данные о погоде на 5 дней.";
+    return;
+  }
+
+  weather5DaysContainer.innerHTML = ""; // Очищаем контейнер
+
+  const dailyData = {};
+
+  // Группируем данные по дням
+  weather5DaysData.list.forEach((item) => {
+    const date = new Date(item.dt * 1000).toLocaleDateString("ru-RU", {
+      day: "numeric",
+      month: "long",
+    });
+    if (!dailyData[date]) {
+      dailyData[date] = [];
+    }
+    dailyData[date].push(item);
+  });
+
+  // Создаем карточки для каждого дня
+  for (const date in dailyData) {
+    const dayWeather = dailyData[date];
+    const avgTemp =
+      dayWeather.reduce((sum, item) => sum + item.main.temp, 0) /
+      dayWeather.length;
+    const weatherDescription = dayWeather[0].weather[0].description;
+    const weatherIcon = dayWeather[0].weather[0].icon;
+
+    const cardHtml = `
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">${date}</h5>
+            <img src="http://openweathermap.org/img/wn/${weatherIcon}@4x.png" alt="${weatherDescription}">
+            <p class="card-text">Средняя температура: ${avgTemp.toFixed(1)}°C</p>
+            <p class="card-text">${weatherDescription}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    weather5DaysContainer.innerHTML += cardHtml;
+  }
+}
+
 weatherForm.addEventListener("submit", (event) => {
   event.preventDefault();
   //   Впишем в localStorage последний введенный город
