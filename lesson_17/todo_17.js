@@ -169,3 +169,46 @@ form.addEventListener("submit", function (event) {
   createTaskItemFromInput();
   toggleTaskCardsVisibility();
 });
+
+// 14. Функция добычи CSRF токена из cookie
+function getCsrfToken() {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [name, value] = cookie.split("=");
+    // Проверка на вхождение в имя названия "CSRF-Token"
+    if (name.includes("CSRF-Token")) {
+      return value;
+    }
+  }
+  return null;
+}
+
+// 15. Функция для отправки POST на сервер.
+// Она асинхронная, принемает CSRF, URL, и данные для отправки
+// Формирует заголовки и тело запроса, отправляет запрос на сервер и возвращает ответ
+async function sendPostRequest(csrfToken, url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Проверяем, успешен ли ответ (статус 200-299)
+    if (!response.ok) {
+      // Если нет, создаем ошибку с текстом статуса
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Возвращаем результат, распарсив его как JSON
+    return await response.json();
+  } catch (error) {
+    // Ловим как сетевые ошибки, так и HTTP-ошибки
+    console.error("Ошибка при отправке запроса:", error);
+    // Возвращаем null или можно выбросить ошибку дальше
+    return null;
+  }
+}
