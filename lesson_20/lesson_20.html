@@ -3,68 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 20</title>
+    <title>Погода</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <style>
-      #loadingSpinner {
-        display: none;
-      }
-
-      #card {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="lesson_20.css">
   </head>
   <body>
-    <h1>
-      Погодное приложение
-      <div class="spinner-border" role="status" id="loadingSpinner">
-        <span class="visually-hidden">Загрузка...</span>
-      </div>
-    </h1>
-    <form action="" id="weatherForm">
-      <!-- Группа - инпут + кнопка -->
-      <div class="input-group mb-3">
-        <input type="text" id="inputWeather" class="form-control" />
-        <button type="submit" id="btnWeather" class="btn btn-dark">
-          Получить погоду
+    <div class="container">
+      <h1 class="text-center mb-4" style="font-weight: 300;">Погодное приложение</h1>
+      <div class="input-group mb-4 mx-auto" style="max-width: 600px;">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Введите название города..."
+          id="cityInput"
+        />
+        <button class="btn btn-primary" type="button" id="getWeatherBtn">
+          <i class="bi bi-search"></i> Получить погоду
         </button>
       </div>
 
-      <div id="weatherResult"></div>
-    </form>
-
-    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-      <div class="card" style="width: 22rem" id="card">
-        <div class="card-header fs-4 text-center" id="cardCityName"></div>
-        <div class="card-body d-flex align-items-center">
-          <img id="currentWeatherIcon" src="" alt="Иконка погоды" class="me-3" style="width: 128px; height: 128px;" />
-          <ul class="list-group list-group-flush w-100">
-            <li class="list-group-item" id="cardTemp"></li>
-            <li class="list-group-item" id="cardTempFeels"></li>
-            <li class="list-group-item" id="cardWind"></li>
-          </ul>
+      <div class="row justify-content-center g-4">
+        <div class="col-lg-5 col-md-6">
+          <div class="card h-100" id="card" style="display: none;">
+            <div class="card-header fs-4 text-center" id="cardCityName"></div>
+            <div class="card-body d-flex flex-column flex-sm-row align-items-center text-center text-sm-start">
+              <img id="currentWeatherIcon" src="" alt="Иконка погоды" class="me-sm-3 mb-3 mb-sm-0" style="width: 128px; height: 128px;" />
+              <ul class="list-group list-group-flush w-100">
+                <li class="list-group-item" id="cardTemp"></li>
+                <li class="list-group-item" id="cardTempFeels"></li>
+                <li class="list-group-item" id="cardWind"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <div class="card h-100" id="airPollutionCard" style="display: none;">
+            <div class="card-header fs-4 text-center">Качество воздуха</div>
+            <div class="card-body d-flex align-items-center justify-content-center">
+              <p class="card-text fs-3" id="airQuality"></p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Карточка для качества воздуха -->
-      <div class="card" style="width: 22rem; display: none" id="airPollutionCard">
-        <div class="card-header fs-4 text-center">Качество воздуха</div>
-        <div class="card-body d-flex align-items-center justify-content-center">
-          <p class="card-text fs-3" id="airQuality"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Прогноз на 5 дней -->
-    <div id="weather5Days" class="mt-3">
-      <h3>Прогноз на 5 дней (время местное)</h3>
-      <div id="weather5DaysContainer" class="row row-cols-1 row-cols-md-5 g-4"></div>
+      <!-- Прогноз на 5 дней -->
+      <div id="forecastContainer" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 mt-4"></div>
     </div>
 
     <script src="lesson_20_1.js"></script>
