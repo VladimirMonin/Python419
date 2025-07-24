@@ -50,21 +50,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // Получаем данные из формы
     let fullName = fullNameInput.value;
     let birthDate = birthDateInput.value;
-    let avatar = avatarInput.value;
+    let avatarFile = avatarInput.files[0];
 
-    // Создаем объект с данными
-    let data = {
-      fullName,
-      birthDate,
-      avatar,
+    // Читаем файл через FileReader чтобы поместить сразу
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      userAvatarResult.src = e.target.result;
+    };
+
+    // Запускаем процесс чтения файла
+    reader.readAsDataURL(avatarFile);
+
+    // Создаем объект для отправки на сервер
+    const data = {
+      fullName: fullName,
+      birthDate: birthDate,
+      avatar: avatarFile, // На сервер можно отправить сам файл
     };
 
     // Отправляем данные на сервер
     sendDataToServer(data).then((response) => {
       // Меняем данные на страничке
-      userAvatarResult.src = response.avatar;
-      fullNameResult.textContent = fullName;
-      birthDateResult.textContent = birthDate;
+      // Аватар уже обновлен локально для предпросмотра.
+      // Если сервер вернет URL на сохраненный файл, можно обновить src еще раз:
+      // userAvatarResult.src = response.avatar;
+      fullNameResult.textContent = response.fullName;
+      birthDateResult.textContent = response.birthDate;
       // Убрать спиннер показать кнопку
       spinnerBorder.classList.add("d-none");
       formBnt.classList.remove("d-none");
@@ -72,6 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // лог в консоль
     // "C:\Users\user\Pictures\1.jpg"
-    console.log(fullName, birthDate, avatar);
+    console.log(fullName, birthDate, avatarFile);
   });
 });

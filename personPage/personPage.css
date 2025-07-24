@@ -12,9 +12,11 @@ body {
 }
 
 .user-avatar {
-  max-width: 70%;
-  min-width: 100px;
+  width: 150px; /* Задаем фиксированную ширину */
+  height: 150px; /* и высоту, чтобы сделать контейнер квадратным */
   border: 3px solid #032c6a;
+  object-fit: cover; /* Масштабирует изображение с сохранением пропорций */
+  object-position: center; /* Центрирует изображение */
 }
 
 h1,

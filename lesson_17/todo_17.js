@@ -7,6 +7,7 @@ const toDoContainer = document.querySelector(".todo-container");
 const doneContainer = document.querySelector(".done-container");
 const inputSearchTask = document.getElementById("taskName");
 const form = document.querySelector("form");
+let csrfToken;
 
 // 1. Функция через промпт спрашивает у пользователя какую задачу он хочет добавить в список дел.
 // function askUser() {
@@ -149,7 +150,7 @@ function toggleTaskCardsVisibility() {
 }
 
 // 11 функция извлекающая текст из поля ввода inputSearchTask и создающая карточку
-function createTaskItemFromInput() {
+async function createTaskItemFromInput() {
   const taskText = inputSearchTask.value;
   //   Уточняем, хочет ли пользователь создать задачу
   const confirmCreation = confirm(
@@ -161,6 +162,15 @@ function createTaskItemFromInput() {
   const taskCard = createTaskCard(taskText);
   addTaskToList(toDoContainer, taskCard);
   inputSearchTask.value = "";
+
+  // Отправка данных на сервер
+  let data = {
+    task: taskText,
+  };
+
+  // Отправка данных на сервер
+  let response = await sendPostRequest(csrfToken, "http://127.0.0.1:8000/task/create/", data);
+  console.log(response);
 }
 
 // 12. Блокирование отправки формы и запуск создания задачи
@@ -187,14 +197,16 @@ function getCsrfToken() {
 // Она асинхронная, принемает CSRF, URL, и данные для отправки
 // Формирует заголовки и тело запроса, отправляет запрос на сервер и возвращает ответ
 async function sendPostRequest(csrfToken, url, data) {
-  try {
+  let dataString = JSON.stringify(data);
+  console.log(dataString);
+    try {
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": csrfToken,
       },
-      body: JSON.stringify(data),
+      body: dataString,
     });
 
     // Проверяем, успешен ли ответ (статус 200-299)
@@ -212,3 +224,13 @@ async function sendPostRequest(csrfToken, url, data) {
     return null;
   }
 }
+
+// 16. Слушатель на документ - по загрузке - добывает токен
+document.addEventListener("DOMContentLoaded", function () {
+  const csrfToken = getCsrfToken();
+  if (csrfToken) {
+    console.log("CSRF-Token:", csrfToken);
+  } else {
+    console.error("CSRF-Token не найден");
+  }
+});
